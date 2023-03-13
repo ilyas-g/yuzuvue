@@ -12,45 +12,8 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import gql from 'graphql-tag'
 import { useQuery } from '@vue/apollo-composable'
-
-// const CHARACTERS_QUERY = gql`
-//   query Characters {
-//     characters {
-//       results {
-//         id
-//         name
-//         image
-//       }
-//     }
-//   }
-// `
-
-const STANDING_QUERY = gql`
-  query LeagueStandings {
-    league(slug: "classement-parisienne-fighting-ligue-ggst-road-to-evo-2k23") {
-      standings (query: {
-        page: 1,
-        perPage: 8
-      }) {
-        pageInfo {
-          totalPages
-          total
-        }
-        nodes {
-          id
-          placement
-          entrant {
-            id
-            name
-          }
-        }
-      }
-    }
-  }
-`;
-
+import {STANDING_QUERY} from "./queries/queries"
 
 export default {
   name: 'App',
