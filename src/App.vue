@@ -4,8 +4,8 @@
 
   <p v-if="error">Something went wrong...</p>
   <p v-if="loading">Loading...</p>
-  <p v-else v-for="character in result.characters.results" :key="character.id">
-    {{ character.name }}
+  <p v-else v-for="character in result.league.standings.nodes" :key="character.id">
+    {{ character.entrant.name }}
   </p>
   <div></div>
 </template>
@@ -15,22 +15,47 @@ import HelloWorld from './components/HelloWorld.vue'
 import gql from 'graphql-tag'
 import { useQuery } from '@vue/apollo-composable'
 
-const CHARACTERS_QUERY = gql`
-  query Characters {
-    characters {
-      results {
-        id
-        name
-        image
+// const CHARACTERS_QUERY = gql`
+//   query Characters {
+//     characters {
+//       results {
+//         id
+//         name
+//         image
+//       }
+//     }
+//   }
+// `
+
+const STANDING_QUERY = gql`
+  query LeagueStandings {
+    league(slug: "classement-parisienne-fighting-ligue-ggst-road-to-evo-2k23") {
+      standings (query: {
+        page: 1,
+        perPage: 8
+      }) {
+        pageInfo {
+          totalPages
+          total
+        }
+        nodes {
+          id
+          placement
+          entrant {
+            id
+            name
+          }
+        }
       }
     }
   }
-`
+`;
+
 
 export default {
   name: 'App',
   setup () {
-    const { result, loading, error } = useQuery(CHARACTERS_QUERY);
+    const { result, loading, error } = useQuery(STANDING_QUERY);
     return {
       result,
       loading, 
