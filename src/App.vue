@@ -15,7 +15,7 @@
   <div v-else >
     {{ result.user.player.gamerTag }}
     <div v-for="character in result.user.player.recentStandings" :key="character.id">
-      <p>{{ character.entrant.event.name }} - {{ character.entrant.event.tournament.name }} - {{ character.placement }} place</p>
+      <p>{{ character.entrant.event.name }} - {{ character.entrant.event.tournament.name }} - {{ character.placement }} place ({{ character.entrant.event.videogame.name }})</p>
     </div>
   </div>
   <div></div>
