@@ -1,6 +1,10 @@
 <template>
+
+  <router-link to="/">Go to Home</router-link>
+    <router-link to="/about">Go to About</router-link>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+
 
   <!-- <ul>
     <li v-for="value in myObject" :key="value">
@@ -19,10 +23,12 @@
     </div>
   </div>
   <div></div>
+  <router-view></router-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+// import HeaderNavigation from './components/HeaderNavigation.vue'
 import { useQuery } from '@vue/apollo-composable'
 import {PLAYER_QUERY} from "./queries/queries"
 
@@ -30,7 +36,6 @@ export default {
   name: 'App',
   setup () {
     const { result, loading, error } = useQuery(PLAYER_QUERY);
-
     return {
       result,
       loading, 
@@ -43,8 +48,8 @@ export default {
     }
   },
   components: {
-    HelloWorld
-  }
+    // HelloWorld
+}
 }
 </script>
 
