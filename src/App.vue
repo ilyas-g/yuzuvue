@@ -27,6 +27,16 @@
   </div>
 
 
+    <div v-if="error">
+      {{ error }}
+    </div>
+    <ul v-else>
+      <li v-for="restaurant in restaurants" :key="restaurant.id">
+        {{ restaurant.attributes.name }}
+      </li>
+    </ul>
+
+
   <router-view v-slot="{ Component }">
     <!-- *** A REGARDER POUR LES TRANSITIONS ! https://www.youtube.com/watch?v=pG5pwDGc3D4 *** -->
     <transition name="fade" mode="out-in">
@@ -41,8 +51,15 @@
 import { useQuery } from '@vue/apollo-composable'
 import {PLAYER_QUERY} from "./queries/queries"
 
+import axios from 'axios'
+
 export default {
   name: 'App',
+  data () {
+    return {
+      restaurants: [],
+    }
+  },
   setup () {
     const { result, loading, error } = useQuery(PLAYER_QUERY);
     return {
@@ -54,6 +71,14 @@ export default {
         author: 'Jane Doe',
         publishedAt: '2016-04-10'
       }
+    }
+  },
+  async mounted () {
+    try {
+      const response = await axios.get('http://localhost:1337/api/restaurants')
+      this.restaurants = response.data.data
+    } catch (error) {
+      this.error = error;
     }
   },
   components: {
