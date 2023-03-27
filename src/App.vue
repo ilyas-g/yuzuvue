@@ -1,7 +1,10 @@
 <template>
 
-  <router-link to="/">Go to Home</router-link>
-  <router-link to="/about">Go to About</router-link>
+  <nav>
+    <router-link to="/">Go to Home</router-link>
+    <router-link to="/about">Go to About</router-link>
+  </nav>
+
   <img alt="Vue logo" src="./assets/logo.png">
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
@@ -22,8 +25,14 @@
       <p>{{ character.entrant.event.name }} - {{ character.entrant.event.tournament.name }} - {{ character.placement }} place ({{ character.entrant.event.videogame.name }})</p>
     </div>
   </div>
-  <div></div>
-  <router-view></router-view>
+
+
+  <router-view v-slot="{ Component }">
+    <!-- *** A REGARDER POUR LES TRANSITIONS ! https://www.youtube.com/watch?v=pG5pwDGc3D4 *** -->
+    <transition name="fade" mode="out-in">
+      <Component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script>
@@ -54,6 +63,41 @@ export default {
 </script>
 
 <style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav a {
+  margin: 0 0.5rem;
+  color: black;
+}
+
+nav a:hover,
+nav a.router-link-exact-active {
+  color: crimson;
+  text-decoration: underline;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+
+main {
+  padding: 1rem;
+  max-width: 768px;
+  margin: 0 auto;
+  will-change: transform, opacity;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
