@@ -1,10 +1,10 @@
 import { createApp, provide, h } from 'vue';
-
 import { DefaultApolloClient } from '@vue/apollo-composable';
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 
 import App from './App.vue';
+import router from './router';
 
 const cache = new InMemoryCache();
 
@@ -13,9 +13,8 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-    // get the authentication token from local storage if it exists
     const token = process.env.VUE_APP_TOKEN;
-    // return the headers to the context so httpLink can read them
+
     return {
         headers: {
             ...headers,
@@ -37,4 +36,4 @@ const app = createApp({
     render: () => h(App),
 });
 
-app.mount('#app');
+app.use(router).mount('#app');
