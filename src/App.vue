@@ -26,7 +26,6 @@
     </div>
   </div>
 
-
     <div v-if="error">
       {{ error }}
     </div>
@@ -35,7 +34,6 @@
         {{ restaurant.attributes.name }}
       </li>
     </ul>
-
 
   <router-view v-slot="{ Component }">
     <!-- *** A REGARDER POUR LES TRANSITIONS ! https://www.youtube.com/watch?v=pG5pwDGc3D4 *** -->
@@ -58,6 +56,7 @@ export default {
   data () {
     return {
       restaurants: [],
+      objects: [],
     }
   },
   setup () {
@@ -83,7 +82,7 @@ export default {
   },
   components: {
     // HelloWorld
-}
+  }
 }
 </script>
 
