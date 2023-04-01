@@ -26,6 +26,14 @@
     </div>
   </div>
 
+    <div v-if="error">
+      {{ error }}
+    </div>
+    <ul v-else>
+      <li v-for="restaurant in restaurants" :key="restaurant.id">
+        {{ restaurant.attributes.name }}
+      </li>
+    </ul>
 
   <router-view v-slot="{ Component }">
     <!-- *** A REGARDER POUR LES TRANSITIONS ! https://www.youtube.com/watch?v=pG5pwDGc3D4 *** -->
@@ -41,8 +49,16 @@
 import { useQuery } from '@vue/apollo-composable'
 import {PLAYER_QUERY} from "./queries/queries"
 
+import axios from 'axios'
+
 export default {
   name: 'App',
+  data () {
+    return {
+      restaurants: [],
+      objects: [],
+    }
+  },
   setup () {
     const { result, loading, error } = useQuery(PLAYER_QUERY);
     return {
@@ -56,9 +72,17 @@ export default {
       }
     }
   },
+  async mounted () {
+    try {
+      const response = await axios.get('https://yuzugaming-back.herokuapp.com/api/restaurants')
+      this.restaurants = response.data.data
+    } catch (error) {
+      this.error = error;
+    }
+  },
   components: {
     // HelloWorld
-}
+  }
 }
 </script>
 
