@@ -3,6 +3,7 @@
   <nav>
     <router-link to="/">Go to Home</router-link>
     <router-link to="/about">Go to About</router-link>
+    <router-link to="/team">Go to Team</router-link>
   </nav>
 
   <img alt="Vue logo" src="./assets/logo.png">
@@ -44,8 +45,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import HeaderNavigation from './components/HeaderNavigation.vue'
 import { useQuery } from '@vue/apollo-composable'
 import {PLAYER_QUERY} from "./queries/queries"
 
