@@ -13,6 +13,12 @@ const routes = [
     component: () =>
       import("../views/AboutView.vue"),
   },
+  {
+    path: "/team",
+    name: "team",
+    component: () =>
+      import("../views/TeamView.vue"),
+  },
 ];
 
 const router = createRouter({
