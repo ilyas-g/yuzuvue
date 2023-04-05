@@ -4,11 +4,11 @@
     <router-link to="/">Go to Home</router-link>
     <router-link to="/about">Go to About</router-link>
     <router-link to="/team">Go to Team</router-link>
+    <router-link to="/player">Go to Player</router-link>
   </nav>
 
   <img alt="Vue logo" src="./assets/logo.png">
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-
 
   <!-- <ul>
     <li v-for="value in myObject" :key="value">
@@ -17,15 +17,6 @@
   </ul>
 
   <p>{{ myObject.title }}</p> -->
-
-  <p v-if="error">Something went wrong...</p>
-  <p v-if="loading">Loading...</p>
-  <div v-else >
-    {{ result.user.player.gamerTag }}
-    <div v-for="character in result.user.player.recentStandings" :key="character.id">
-      <p>{{ character.entrant.event.name }} - {{ character.entrant.event.tournament.name }} - {{ character.placement }} place ({{ character.entrant.event.videogame.name }})</p>
-    </div>
-  </div>
 
     <div v-if="error">
       {{ error }}
