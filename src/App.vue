@@ -26,16 +26,18 @@
         {{ restaurant.attributes.name }}
       </li>
     </ul>
+<router-view></router-view>
 
-  <router-view v-slot="{ Component }">
+</template>
+
+<script>
+
+{/* <router-view v-slot="{ Component }">
     <!-- *** A REGARDER POUR LES TRANSITIONS ! https://www.youtube.com/watch?v=pG5pwDGc3D4 *** -->
     <transition name="fade" mode="out-in">
       <Component :is="Component" />
     </transition>
-  </router-view>
-</template>
-
-<script>
+  </router-view> */}
 import { useQuery } from '@vue/apollo-composable'
 import {PLAYER_QUERY} from "./queries/queries"
 

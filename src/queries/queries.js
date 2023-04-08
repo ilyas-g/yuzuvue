@@ -1,9 +1,12 @@
 import gql from 'graphql-tag';
 
+// # query YuzuPlayer($slug: String!) {
+// #   user(slug: $slug) {
 const PLAYER_QUERY = gql`
 query YuzuPlayer {
   user(slug: "d5ce37b2") {
     id
+    slug
     player {
       id
       gamerTag

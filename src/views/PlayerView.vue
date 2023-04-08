@@ -11,14 +11,25 @@
             </div>
         </div>
 
-        <div v-if="error">
+        <!-- <div v-if="error">
             {{ error }}
         </div>
         <ul v-else>
             <li v-for="player in players" :key="player.id">
                 {{ player.attributes.name }}
             </li>
-        </ul>
+        </ul> -->
+
+        <div v-if="fetchError">Oops! Error encountered: {{ fetchError.message }}</div>
+  <div v-else-if="fetchData">
+    <ul v-for="data in fetchData.data" :key="data.id">
+      <li>{{ data.attributes.name }}</li>
+      <li>{{ data.attributes.idStartGG }}</li>
+    </ul>
+    <!-- Data loaded:
+    <pre>{{ fetchData.data }}</pre> -->
+  </div>
+  <div v-else>Loading...</div>
     </main>
 </template>
 
@@ -36,7 +47,9 @@ Voir le site marvel fait en react pour peut-être réussir à afficher le player
 
 import { useQuery } from '@vue/apollo-composable'
 import {PLAYER_QUERY} from "../queries/queries"
-import axios from 'axios'
+import { watch, ref } from 'vue'
+// import axios from 'axios'
+import { useFetch } from '../utils/fetch.js'
 
 export default {
   name: 'PlayerView',
@@ -48,12 +61,26 @@ export default {
       }
   },
   setup () {
+    const count = ref(0)
     const { result, loading, error, slug } = useQuery(PLAYER_QUERY);
+    // const resultSlug = result.value.user.slug
+    // const slugSplit = resultSlug.split('/')
+    // const slugID = slugSplit[1]
+    watch(() => {
+    console.log(result.value)
+    // console.log(slugID)
+    console.log("count ref" + count.value) // 0
+    })
+
+    const { fetchData, fetchError } = useFetch(`http://localhost:1337/api/players?populate=*&filters[idStartGG][$eq]=d5ce37b2`)
+
     return {
       result,
       loading, 
       slug,
       error,
+      fetchData,
+      fetchError,
       myObject: {
         title: 'How to do lists in Vue',
         author: 'Jane Doe',
@@ -61,20 +88,19 @@ export default {
       }
     }
   },
-  async mounted () {
-    this.idStartGG = this.slug
-    console.log("SLUUUUG" + this.slug);
-    try {
-      // const response = await axios.get(`http://localhost:1337/api/players?populate=*&filters[idStartGG][$eq]=${this.idStartGG}`)
-      const response = await axios.get(`http://localhost:1337/api/players?populate=*&filters[idStartGG][$eq]=d5ce37b2`)
-        // this.idStartGG = 'd5ce37b2'
-      this.players = response.data.data
-    console.log("SLUAAAAAAAAAAAAAUUUG" + this.idStartGG);
+  // async mounted () {
+  //   this.idStartGG = this.slug
+  //   // console.log("SLUUUUG" + this.slug);
+  //   try {
+  //     // const response = await axios.get(`http://localhost:1337/api/players?populate=*&filters[idStartGG][$eq]=${this.idStartGG}`)
+  //     const response = await axios.get(`http://localhost:1337/api/players?populate=*&filters[idStartGG][$eq]=d5ce37b2`)
+  //       // this.idStartGG = 'd5ce37b2'
+  //     this.players = response.data.data
 
-      console.log(this.players)
-    } catch (error) {
-      this.error = error;
-    }
-  },
+  //     // console.log(this.players)
+  //   } catch (error) {
+  //     this.error = error;
+  //   }
+  // },
 }
 </script>
