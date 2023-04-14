@@ -1,33 +1,13 @@
 import gql from 'graphql-tag';
 
-const STANDING_QUERY = gql`
-  query LeagueStandings {
-    league(slug: "classement-parisienne-fighting-ligue-ggst-road-to-evo-2k23") {
-      standings (query: {
-        page: 1,
-        perPage: 8
-      }) {
-        pageInfo {
-          totalPages
-          total
-        }
-        nodes {
-          id
-          placement
-          entrant {
-            id
-            name
-          }
-        }
-      }
-    }
-  }
-`;
-
+// query YuzuPlayer {
+//   user(slug: "d5ce37b2") {
 const PLAYER_QUERY = gql`
-query YuzuPlayer {
-  user(slug: "d5ce37b2") {
+query YuzuPlayer($slug: String!) {
+  user(slug: $slug) {
+    
     id
+    slug
     player {
       id
       gamerTag
@@ -56,4 +36,4 @@ query YuzuPlayer {
 }
 `;
 
-export { STANDING_QUERY, PLAYER_QUERY };
+export { PLAYER_QUERY };

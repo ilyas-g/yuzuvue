@@ -4,11 +4,11 @@
     <router-link to="/">Go to Home</router-link>
     <router-link to="/about">Go to About</router-link>
     <router-link to="/team">Go to Team</router-link>
+    <router-link to="/player">Go to Player</router-link>
   </nav>
 
   <img alt="Vue logo" src="./assets/logo.png">
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-
 
   <!-- <ul>
     <li v-for="value in myObject" :key="value">
@@ -18,15 +18,6 @@
 
   <p>{{ myObject.title }}</p> -->
 
-  <p v-if="error">Something went wrong...</p>
-  <p v-if="loading">Loading...</p>
-  <div v-else >
-    {{ result.user.player.gamerTag }}
-    <div v-for="character in result.user.player.recentStandings" :key="character.id">
-      <p>{{ character.entrant.event.name }} - {{ character.entrant.event.tournament.name }} - {{ character.placement }} place ({{ character.entrant.event.videogame.name }})</p>
-    </div>
-  </div>
-
     <div v-if="error">
       {{ error }}
     </div>
@@ -35,16 +26,18 @@
         {{ restaurant.attributes.name }}
       </li>
     </ul>
+<router-view></router-view>
 
-  <router-view v-slot="{ Component }">
+</template>
+
+<script>
+
+{/* <router-view v-slot="{ Component }">
     <!-- *** A REGARDER POUR LES TRANSITIONS ! https://www.youtube.com/watch?v=pG5pwDGc3D4 *** -->
     <transition name="fade" mode="out-in">
       <Component :is="Component" />
     </transition>
-  </router-view>
-</template>
-
-<script>
+  </router-view> */}
 import { useQuery } from '@vue/apollo-composable'
 import {PLAYER_QUERY} from "./queries/queries"
 
