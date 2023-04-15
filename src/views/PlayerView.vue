@@ -1,6 +1,6 @@
 <template>
   <main>
-    <!-- <div>User {{ $route.params.name }}</div> -->
+    <div>User {{ $route.params.name }}</div>
 
     <div v-if="fetchError">Oops! Error encountered: {{ fetchError.message }}</div>
     <div v-else-if="fetchData">
@@ -13,17 +13,15 @@
       </div>
     </div>
     <div v-else>Loading...</div>
-
-    <p>dfghhgfd</p>
-    <Player name="John" idStartGG="MKBxc2" />
   </main>
 </template>
 
 <script>
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+
 import { useFetch } from '../utils/fetch.js'
 import Charts from '../components/Charts.vue'
-import Player from '../components/Player.vue'
-import {watch} from 'vue'
 
 export default {
   name: 'PlayerView',
@@ -33,16 +31,15 @@ export default {
   data () {
       return {
           players: [],
-          // idStartGG: '',
-          // idStartGG: route.params.id
       }
   },
   setup () {
-    // const { fetchData, fetchError } = useFetch(`http://localhost:1337/api/players?populate=*&filters[name][$eq]=${this.route.params.name}`)
-    const { fetchData, fetchError } = useFetch(`http://localhost:1337/api/players?populate=*&filters[name][$eq]=Ganondeurf`)
-    
+    // const router = useRouter()
+    const route = useRoute()
+    const { fetchData, fetchError } = useFetch(`http://localhost:1337/api/players?populate=*&filters[name][$eq]=${route.params.name}`)
+
     watch(fetchData, () => {
-      console.log(fetchData.value.meta);
+      console.log(route.params.name);
     })
 
     return {
@@ -51,8 +48,7 @@ export default {
     }
   },
   components: {
-    Charts,
-    Player
+    Charts
   }
 }
 </script>
