@@ -25,9 +25,6 @@ import Charts from '../components/Charts.vue'
 
 export default {
   name: 'PlayerView',
-  props: {
-      idStart: String
-  },
   data () {
       return {
           players: [],
