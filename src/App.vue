@@ -1,11 +1,6 @@
 <template>
 
-  <nav>
-    <router-link to="/">Go to Home</router-link>
-    <router-link to="/about">Go to About</router-link>
-    <router-link to="/team">Go to Team</router-link>
-    <router-link to="/player">Go to Player</router-link>
-  </nav>
+  <Header />
 
   <img alt="Vue logo" src="./assets/logo.png">
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
@@ -41,6 +36,8 @@
 import { useQuery } from '@vue/apollo-composable'
 import {PLAYER_QUERY} from "./queries/queries"
 
+import Header from "./components/Header.vue"
+
 import axios from 'axios'
 
 export default {
@@ -73,7 +70,7 @@ export default {
     }
   },
   components: {
-    // HelloWorld
+    Header
   }
 }
 </script>
