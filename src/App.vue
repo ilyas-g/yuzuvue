@@ -1,5 +1,4 @@
 <template>
-
   <Header />
 
   <img alt="Vue logo" src="./assets/logo.png">
@@ -24,6 +23,7 @@
   </router-view> */}
 
 import Header from "./components/Header.vue"
+import "./theme.css"
 
 export default {
   name: 'App',
@@ -50,15 +50,9 @@ export default {
   box-sizing: border-box;
 }
 
-nav a {
-  margin: 0 0.5rem;
-  color: black;
-}
-
-nav a:hover,
-nav a.router-link-exact-active {
-  color: crimson;
-  text-decoration: underline;
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
 }
 
 .fade-enter-from,
@@ -83,7 +77,7 @@ main {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /* color: #2c3e50; */
   margin-top: 60px;
 }
 </style>

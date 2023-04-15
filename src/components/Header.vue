@@ -13,3 +13,16 @@
         name: 'HeaderComponent'
     }
 </script>
+
+<style>
+nav a {
+  margin: 0 0.5rem;
+  color: var(--sub-color);
+}
+
+nav a:hover,
+nav a.router-link-exact-active {
+  color: var(--ter-color);
+  text-decoration: underline;
+}
+</style>
