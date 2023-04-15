@@ -1,6 +1,6 @@
 <template>
   <main>
-    <!-- <div>User {{ $route.params.name }}</div> -->
+    <div>User {{ $route.params.name }}</div>
 
     <div v-if="fetchError">Oops! Error encountered: {{ fetchError.message }}</div>
     <div v-else-if="fetchData">
@@ -13,14 +13,15 @@
       </div>
     </div>
     <div v-else>Loading...</div>
-
   </main>
 </template>
 
 <script>
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+
 import { useFetch } from '../utils/fetch.js'
 import Charts from '../components/Charts.vue'
-import {watch} from 'vue'
 
 export default {
   name: 'PlayerView',
@@ -30,30 +31,17 @@ export default {
   data () {
       return {
           players: [],
-          // idStartGG: '',
-          // idStartGG: route.params.id
       }
   },
   setup () {
-    // const { fetchData, fetchError } = useFetch(`http://localhost:1337/api/players?populate=*&filters[name][$eq]=${this.route.params.name}`)
-    const { fetchData, fetchError } = useFetch(`http://localhost:1337/api/players?populate=*&filters[name][$eq]=Ganondeurf`)
+    // const router = useRouter()
+    const route = useRoute()
+    const { fetchData, fetchError } = useFetch(`http://localhost:1337/api/players?populate=*&filters[name][$eq]=${route.params.name}`)
 
-    // fetchData.data.map((dat) => console.log(dat.attributes.name))
-    
     watch(fetchData, () => {
-      console.log(fetchData.value.meta);
+      console.log(route.params.name);
     })
-//     watch(fetchData, (props) => {
-//       /* triggers on deep mutation to state */
-      
-//       // console.log(this.idStartGG);
-      
-//       // console.log(fetchData.value.data[0].attributes.idStartGG);
-//       fetchData.value.data.map((item) => {
-//       props.idStart = '300903d2'
-//       console.log(item.attributes.name);
-//     })
-// })
+
     return {
       fetchData,
       fetchError,
