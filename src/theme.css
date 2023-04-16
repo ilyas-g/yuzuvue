@@ -4,6 +4,8 @@
     --sub-color: #ffd747;
     --ter-color: #e7c292;
 
+    --font-body-family: Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
+    /* "Google Sans", -apple-system, BlinkMacSystemFont, sans-serif; */
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;

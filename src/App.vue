@@ -1,7 +1,7 @@
 <template>
   <Header />
 
-  <img alt="Vue logo" src="./assets/logo.png">
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <!-- <ul>
     <li v-for="value in myObject" :key="value">
@@ -55,6 +55,7 @@ body,html {height: 100%; width: 100%; max-width: 100%; overflow-x: hidden;}
 body {
   background-color: var(--main-bg-color);
   color: var(--main-color);
+  font-family: var(--font-body-family),"游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;;
 }
 
 .fade-enter-from,
@@ -75,7 +76,7 @@ main {
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  // font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
