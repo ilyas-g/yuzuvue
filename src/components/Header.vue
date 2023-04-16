@@ -150,6 +150,7 @@ nav a.router-link-exact-active {
     display: flex;
     justify-content: space-around;
     font-size: initial;
+    pointer-events: auto;
     a {
       opacity: 1;
     }
