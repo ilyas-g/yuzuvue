@@ -42,13 +42,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+body,html {height: 100%; width: 100%; max-width: 100%; overflow-x: hidden;}
 
 body {
   background-color: var(--main-bg-color);
@@ -76,8 +78,8 @@ main {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   /* color: #2c3e50; */
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 </style>
