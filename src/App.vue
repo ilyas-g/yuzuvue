@@ -55,7 +55,7 @@ body,html {height: 100%; width: 100%; max-width: 100%; overflow-x: hidden;}
 body {
   background-color: var(--main-bg-color);
   color: var(--main-color);
-  font-family: var(--font-body-family),"游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;;
+  font-family: var(--font-main-family);
 }
 
 .fade-enter-from,

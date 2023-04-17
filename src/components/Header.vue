@@ -52,10 +52,12 @@ header {
     align-items: center;
 
     margin-top: 5px;
+    font-family: 'Montserrat', sans-serif;
+
     .logo {
       @media screen and (min-width: 992px) {
         margin-left: 30px;
-  }
+      }
     }
 }
 
@@ -163,7 +165,7 @@ nav a.router-link-exact-active {
     transform: none;
     display: flex;
     // justify-content: space-around;
-    font-size: initial;
+    font-size: 14px;
     pointer-events: auto;
     letter-spacing: normal;
     position: relative;
