@@ -25,7 +25,7 @@
 <script>
 import { ref } from 'vue'
 import myLogoSrc from "@/assets/yuzu_logo.png";
-import "../theme.css"
+
 // import myLogoSrc from "@/assets/yuzu_logo.svg";
 export default {
   name: 'HeaderComponent',
@@ -42,11 +42,11 @@ export default {
 </script>
 
 <style lang="scss">
+
 header {
     padding: 15px;
     position: relative;
-    // background-color: aqua;
-
+    background-color: $ter-color;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,11 +55,13 @@ header {
     font-family: 'Montserrat', sans-serif;
 
     .logo {
-      @media screen and (min-width: 992px) {
+      // @media screen and (min-width: 992px) {
+      @media screen and (min-width: $breakpoint-lg) {
         margin-left: 30px;
       }
     }
 }
+
 
 .active {
   background-color: dodgerblue;

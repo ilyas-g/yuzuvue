@@ -23,7 +23,6 @@
   </router-view> */}
 
 import Header from "./components/Header.vue"
-import "./theme.css"
 
 export default {
   name: 'App',
@@ -53,7 +52,7 @@ export default {
 body,html {height: 100%; width: 100%; max-width: 100%; overflow-x: hidden;}
 
 body {
-  background-color: var(--main-bg-color);
+  background-color: $main-bg-color;
   color: var(--main-color);
   font-family: var(--font-main-family);
 }
