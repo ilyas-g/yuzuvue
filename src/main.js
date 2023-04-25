@@ -3,6 +3,8 @@ import { DefaultApolloClient } from '@vue/apollo-composable';
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 
+import "./assets/reset.css";
+
 import App from './App.vue';
 import router from './router';
 

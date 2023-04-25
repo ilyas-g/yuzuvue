@@ -1,84 +1,80 @@
 <template>
+  <Header 
+    lang="lplpllp"
+ch="mmppm"
 
-  <nav>
-    <router-link to="/">Go to Home</router-link>
-    <router-link to="/about">Go to About</router-link>
-    <router-link to="/team">Go to Team</router-link>
-    <router-link to="/player">Go to Player</router-link>
-  </nav>
+  />
 
-  <img alt="Vue logo" src="./assets/logo.png">
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-
   <!-- <ul>
     <li v-for="value in myObject" :key="value">
       {{ value }}
     </li>
   </ul>
-
   <p>{{ myObject.title }}</p> -->
 
-    <div v-if="error">
-      {{ error }}
-    </div>
-    <ul v-else>
-      <li v-for="restaurant in restaurants" :key="restaurant.id">
-        {{ restaurant.attributes.name }}
-      </li>
-    </ul>
 <router-view></router-view>
 
 </template>
 
 <script>
-
 {/* <router-view v-slot="{ Component }">
     <!-- *** A REGARDER POUR LES TRANSITIONS ! https://www.youtube.com/watch?v=pG5pwDGc3D4 *** -->
     <transition name="fade" mode="out-in">
       <Component :is="Component" />
     </transition>
   </router-view> */}
-import { useQuery } from '@vue/apollo-composable'
-import {PLAYER_QUERY} from "./queries/queries"
+
+import { ref } from 'vue'
 
 import axios from 'axios'
+import Header from "./components/Header.vue"
 
 export default {
   name: 'App',
-  data () {
-    return {
-      restaurants: [],
-      objects: [],
-    }
-  },
   setup () {
-    const { result, loading, error } = useQuery(PLAYER_QUERY);
+
+    // function test() {
+    //   console.log("okokokkok heqqqqqqqqqqqqqqadereerererere");
+    // }
+
+    // const displayBlock = reactive({
+    //   display: 'none',
+    // })
+
+
+    const posts = ref([
+      { id: 1, title: 'My journey with Vue' },
+      { id: 2, title: 'Blogging with Vue' },
+      { id: 3, title: 'Why Vue is so fun' }
+    ])
+
     return {
-      result,
-      loading, 
-      error,
+      // test,
       myObject: {
         title: 'How to do lists in Vue',
         author: 'Jane Doe',
         publishedAt: '2016-04-10'
-      }
+      },
+      posts
     }
   },
   async mounted () {
     try {
-      const response = await axios.get('https://yuzugaming-back.herokuapp.com/api/restaurants')
-      this.restaurants = response.data.data
+      const response = await axios.get('http://localhost:1337/api/{content-type}?locale={locale-code}')
+      this.players = response.data.data
     } catch (error) {
       this.error = error;
     }
   },
   components: {
-    // HelloWorld
+    Header
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 
 * {
   margin: 0;
@@ -86,15 +82,12 @@ export default {
   box-sizing: border-box;
 }
 
-nav a {
-  margin: 0 0.5rem;
-  color: black;
-}
+body,html {height: 100%; width: 100%; max-width: 100%; overflow-x: hidden;}
 
-nav a:hover,
-nav a.router-link-exact-active {
-  color: crimson;
-  text-decoration: underline;
+body {
+  background-color: $main-bg-color;
+  color: $main-color;
+  font-family: $font-main-family;
 }
 
 .fade-enter-from,
@@ -115,11 +108,15 @@ main {
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  // font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  /* text-align: center; */
+  /* color: #2c3e50; */
+  /* margin-top: 60px; */
+}
+
+.displayed {
+  background-color: brown !important;
 }
 </style>
