@@ -1,9 +1,6 @@
 <template>
     <header>
         <img class="logo" :src="myLogoSrc" alt="my-logo"  width="50" />
-
-        <!-- <myLogoSrc /> -->
-
           <div class="menu-bg" :class="{ fs: isActive }"></div>
           <div class="menu-burger" :class="{ fs: isActive }" @click="isActive = !isActive">
             <span v-if="!isActive">☰</span>
@@ -15,7 +12,12 @@
               <router-link to="/team">Team</router-link>
           </nav>
 
-          <div class="dropdown-lang-wrapper">jp</div>
+          <div class="dropdown-lang-wrapper">
+            <span @click="isActive = !isActive">{{ lang }}</span>
+            <div v-if="!isActive" class="dropdown-content" :class="$attrs.class">
+              {{ ch }}
+            </div>
+          </div>
       </header>
       <!-- <p :class="{ active: isActive }">Element active</p>
       <p v-if="isActive">ok !</p>
@@ -29,7 +31,11 @@ import myLogoSrc from "@/assets/yuzu_logo.png";
 // import myLogoSrc from "@/assets/yuzu_logo.svg";
 export default {
   name: 'HeaderComponent',
-
+  props: {
+    lang: String,
+    ch: Object,
+    style: Object
+  },
   setup() {
     const isActive = ref(false)
 
@@ -46,22 +52,19 @@ export default {
 header {
     padding: 15px;
     position: relative;
-    background-color: $ter-color;
+    background-color: orange;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    margin-top: 5px;
     font-family: 'Montserrat', sans-serif;
 
     .logo {
-      // @media screen and (min-width: 992px) {
       @media screen and (min-width: $breakpoint-lg) {
         margin-left: 30px;
       }
     }
 }
-
 
 .active {
   background-color: dodgerblue;
@@ -69,13 +72,13 @@ header {
 nav a {
   margin: 0 0.5rem;
   display: block;
-  color: var(--sub-color);
+  color: $sub-color;
   text-decoration: none;
 }
 
 nav a:hover,
 nav a.router-link-exact-active {
-  color: var(--ter-color);
+  color: $ter-color;
 }
 
 .menu {
@@ -123,7 +126,7 @@ nav a.router-link-exact-active {
   &.fs {
     transform: rotate(-180deg) translateY(29px);
   }
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $breakpoint-lg) {
     display: none;
   }
 }
@@ -161,7 +164,7 @@ nav a.router-link-exact-active {
     }
   }
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $breakpoint-lg) {
     opacity: 1;
     transition: none;
     transform: none;
@@ -180,7 +183,7 @@ nav a.router-link-exact-active {
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: $breakpoint-lg) {
   .menu, .menu-bg {
     display: none;
   }
@@ -195,5 +198,15 @@ nav a.router-link-exact-active {
     position: relative;
     margin-right: 70px;
 }
+}
+
+// .dropdown-lang-wrapper {
+//   position: relative;
+// }
+
+.dropdown-content {
+  position: absolute;
+  background-color: #663399;
+  top: 40px;
 }
 </style>

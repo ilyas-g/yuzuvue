@@ -1,5 +1,9 @@
 <template>
-  <Header />
+  <Header 
+    lang="lplpllp"
+ch="mmppm"
+
+  />
 
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
@@ -22,17 +26,46 @@
     </transition>
   </router-view> */}
 
+import { ref } from 'vue'
+
+import axios from 'axios'
 import Header from "./components/Header.vue"
 
 export default {
   name: 'App',
   setup () {
+
+    // function test() {
+    //   console.log("okokokkok heqqqqqqqqqqqqqqadereerererere");
+    // }
+
+    // const displayBlock = reactive({
+    //   display: 'none',
+    // })
+
+
+    const posts = ref([
+      { id: 1, title: 'My journey with Vue' },
+      { id: 2, title: 'Blogging with Vue' },
+      { id: 3, title: 'Why Vue is so fun' }
+    ])
+
     return {
+      // test,
       myObject: {
         title: 'How to do lists in Vue',
         author: 'Jane Doe',
         publishedAt: '2016-04-10'
-      }
+      },
+      posts
+    }
+  },
+  async mounted () {
+    try {
+      const response = await axios.get('http://localhost:1337/api/{content-type}?locale={locale-code}')
+      this.players = response.data.data
+    } catch (error) {
+      this.error = error;
     }
   },
   components: {
@@ -53,8 +86,8 @@ body,html {height: 100%; width: 100%; max-width: 100%; overflow-x: hidden;}
 
 body {
   background-color: $main-bg-color;
-  color: var(--main-color);
-  font-family: var(--font-main-family);
+  color: $main-color;
+  font-family: $font-main-family;
 }
 
 .fade-enter-from,
@@ -81,5 +114,9 @@ main {
   /* text-align: center; */
   /* color: #2c3e50; */
   /* margin-top: 60px; */
+}
+
+.displayed {
+  background-color: brown !important;
 }
 </style>
