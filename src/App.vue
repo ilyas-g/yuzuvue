@@ -85,7 +85,9 @@ export default {
 body,html {height: 100%; width: 100%; max-width: 100%; overflow-x: hidden;}
 
 body {
-  background-color: $main-bg-color;
+  // background-color: $main-bg-color;
+  background: #1b1e24;
+
   color: $main-color;
   font-family: $font-main-family;
 }
@@ -102,9 +104,9 @@ body {
 
 main {
   padding: 1rem;
-  max-width: 768px;
+  // max-width: 768px;
   margin: 0 auto;
-  will-change: transform, opacity;
+  // will-change: transform, opacity;
 }
 
 #app {
@@ -114,9 +116,5 @@ main {
   /* text-align: center; */
   /* color: #2c3e50; */
   /* margin-top: 60px; */
-}
-
-.displayed {
-  background-color: brown !important;
 }
 </style>

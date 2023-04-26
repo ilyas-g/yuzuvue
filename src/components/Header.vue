@@ -13,8 +13,8 @@
           </nav>
 
           <div class="dropdown-lang-wrapper">
-            <span @click="isActive = !isActive">{{ lang }}</span>
-            <div v-if="!isActive" class="dropdown-content" :class="$attrs.class">
+            <span @click="langActive = !langActive">{{ lang }}</span>
+            <div v-if="langActive" class="dropdown-content" :class="$attrs.class">
               {{ ch }}
             </div>
           </div>
@@ -38,10 +38,12 @@ export default {
   },
   setup() {
     const isActive = ref(false)
+    const langActive = ref(false)
 
     return {
         myLogoSrc,
         isActive,
+        langActive
     };
   }
 }
@@ -52,7 +54,7 @@ export default {
 header {
     padding: 15px;
     position: relative;
-    background-color: orange;
+    // background-color: orange;
     display: flex;
     justify-content: space-between;
     align-items: center;
