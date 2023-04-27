@@ -52,35 +52,39 @@ $breakpoint-xll: 1400px;
 .icon-arrow-down-3101:before {
     content: "\e900";
 }
-
+  .icon-instagram:before {
+    content: "\e905";
+    color: #e4405f;
+}
 .icon-discord:before {
     content: "\e901";
     color: #7289da;
 }
-
 .icon-twitter:before {
     content: "\e902";
-    color: #1da1f2;
+      color: #1da1f2;
 }
-
 .icon-youtube:before {
     content: "\e903";
     color: #f00;
 }
-
 .icon-twitch1:before {
     content: "\e904";
     color: #6441a4;
 }
-
+.icon-instagram1:before {
+    content: "\ea92";
+}
 .icon-twitter1:before {
     content: "\ea96";
 }
-
 .icon-youtube1:before {
     content: "\ea9d";
 }
-
 .icon-twitch:before {
     content: "\ea9f";
+}
+
+.text-center {
+    text-align: center;
 }

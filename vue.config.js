@@ -9,6 +9,7 @@ module.exports = {
       sass: {
         additionalData: `
           @import "@/styles/global.scss";
+          @import "@/styles/_spacing.scss";
         `,
       },
     },

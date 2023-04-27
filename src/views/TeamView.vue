@@ -5,7 +5,7 @@
         {{ error }}
       </div>
 
-      <div class="okblue" v-else>
+      <div class="teamContainer" v-else>
         <div v-for="player in players" :key="player.id" class="article-card">
           <div class="content">
               <router-link :to="{ name: 'player', params: { name: player.attributes.name }}" class="title">{{ player.attributes.name }}</router-link>
@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss">
-.okblue {
+.teamContainer {
   // background-color: blue;
   margin-top: 15px;
   
@@ -135,5 +135,4 @@ export default {
   font-size: 17px;
   color: #fff;
 }
-
 </style>

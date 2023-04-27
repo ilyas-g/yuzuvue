@@ -117,4 +117,15 @@ main {
   /* color: #2c3e50; */
   /* margin-top: 60px; */
 }
+
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+
+.mr-auto, .mx-auto {
+    margin-right: auto!important;
+}
+.w-100 {
+    width: 100%!important;
+}
 </style>
