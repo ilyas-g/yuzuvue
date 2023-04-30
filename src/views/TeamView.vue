@@ -60,6 +60,7 @@ export default {
   margin-top: 15px;
   
   @media screen and (min-width: $breakpoint-lg) {
+    width: 65%;
     display: flex;
     justify-content: space-around;
     // padding: 0 250px;
@@ -73,7 +74,7 @@ export default {
 
 .article-card {
   width: 100%;
-  // max-width: 350px;
+  max-width: 300px;
   height: 420px;
   // border: 1px solid $sub-color;
   border: 1px solid #ffffff22;

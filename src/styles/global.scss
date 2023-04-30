@@ -13,6 +13,10 @@ $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 $breakpoint-xll: 1400px;
 
+.text-center {
+    text-align: center;
+}
+
 @font-face {
     font-family: 'Montserrat Light';
     src: url('@/assets/fonts/Montserrat-Light.ttf');
@@ -49,10 +53,13 @@ $breakpoint-xll: 1400px;
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-medaille:before {
+    content: "\e907";
+}
 .icon-arrow-down-3101:before {
     content: "\e900";
 }
-  .icon-instagram:before {
+.icon-instagram:before {
     content: "\e905";
     color: #e4405f;
 }
@@ -62,7 +69,7 @@ $breakpoint-xll: 1400px;
 }
 .icon-twitter:before {
     content: "\e902";
-      color: #1da1f2;
+    color: #1da1f2;
 }
 .icon-youtube:before {
     content: "\e903";
@@ -83,8 +90,4 @@ $breakpoint-xll: 1400px;
 }
 .icon-twitch:before {
     content: "\ea9f";
-}
-
-.text-center {
-    text-align: center;
 }

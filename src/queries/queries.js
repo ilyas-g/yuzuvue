@@ -11,7 +11,7 @@ query YuzuPlayer($slug: String!) {
     player {
       id
       gamerTag
-      recentStandings(limit:10) {
+      recentStandings(limit:20) {
         id
         entrant {
           id

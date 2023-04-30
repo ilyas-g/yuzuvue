@@ -21,9 +21,16 @@
             </ul>
           </div>
         </div>
-
+<!-- https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com-->
         <div>
-          <h2 class="text-center">Palmares</h2>
+          <h2 class="text-center"><i class="icon-medaille"></i>Palmares</h2>
           <Charts :player-slug="data.attributes.idStartGG" />
         </div>
         <!-- <Charts player-slug="300903d2" /> -->
@@ -87,6 +94,13 @@ export default {
     // top: 50%;
     // left: 50%;
     // transform: translate(-50%, -50%);
+  }
+
+  h2 {
+    margin-bottom: 15px;
+    i {
+      padding-right: 10px;
+    }
   }
 }
 @media screen and (min-width: 768px) {

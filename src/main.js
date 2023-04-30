@@ -2,6 +2,8 @@ import { createApp, provide, h } from 'vue';
 import { DefaultApolloClient } from '@vue/apollo-composable';
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
+import PerfectScrollbar from 'vue3-perfect-scrollbar';
+import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css';
 
 import "./assets/reset.css";
 
@@ -37,5 +39,10 @@ const app = createApp({
 
     render: () => h(App),
 });
-
+app.use(PerfectScrollbar, {
+    // watchOptions: true,
+    options: {
+        suppressScrollX: true
+    }
+});
 app.use(router).mount('#app');

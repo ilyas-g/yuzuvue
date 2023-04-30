@@ -4,20 +4,22 @@
         <div v-else >
             <!-- <h1>Joueur {{ result.user.player.gamerTag }}</h1> -->
 
-            <div class="table-responsive-lg mx-auto w-100">
-                <table class="table-chart">
-                    <tbody>
-                        <tr v-for="character in result.user.player.recentStandings" :key="character.id">
-                            <td>{{ character.entrant.event.tournament.name }}</td>
-                            <td v-if="character.placement === 1">{{ character.placement }}st</td>
-                            <td v-else-if ="character.placement === 2">{{ character.placement }}nd</td>
-                            <td v-else-if ="character.placement === 3">{{ character.placement }}rd</td>
-                            <td v-else>{{ character.placement }}th</td>
-                            <td>({{ character.entrant.event.videogame.name }})</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <perfect-scrollbar>
+                <div class="table-responsive-lg mx-auto w-100">
+                    <table class="table-chart">
+                        <tbody>
+                            <tr v-for="character in result.user.player.recentStandings" :key="character.id">
+                                <td>{{ character.entrant.event.tournament.name }}</td>
+                                <td v-if="character.placement === 1">{{ character.placement }}st</td>
+                                <td v-else-if ="character.placement === 2">{{ character.placement }}nd</td>
+                                <td v-else-if ="character.placement === 3">{{ character.placement }}rd</td>
+                                <td v-else>{{ character.placement }}th</td>
+                                <td>({{ character.entrant.event.videogame.name }})</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </perfect-scrollbar>
         </div>
 </template>
 
@@ -55,6 +57,23 @@ export default {
 </script>
 
 <style lang="scss">
+@media (min-width: $breakpoint-lg) {
+    .ps {
+        height: 450px;
+    }
+
+    .ps__thumb-y {
+        background-color: $sub-color;
+    }
+
+    .ps__rail-y:hover > .ps__thumb-y {
+        background-color: $ter-color;
+    }
+
+    .ps .ps__rail-y:hover {
+        background-color: transparent;
+    }
+}
 .table-chart {
     width: 100%;
     max-width: 740px;
@@ -76,11 +95,11 @@ export default {
         }
     }
 
-    @media (min-width: $breakpoint-lg) {
-        display: block;
-        height: 450px;
-        overflow-y: scroll;
-    }
+    // @media (min-width: $breakpoint-lg) {
+    //     display: block;
+    //     height: 450px;
+    //     overflow-y: scroll;
+    // }
 }
 
 @media (max-width: 991.98px) {
