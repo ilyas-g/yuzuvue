@@ -1,14 +1,38 @@
 <template>
   <main>
-    <div>User {{ $route.params.name }}</div>
-
     <div v-if="fetchError">Oops! Error encountered: {{ fetchError.message }}</div>
     <div v-else-if="fetchData">
       <!-- <pre>{{ fetchData }}</pre> -->
-      <div v-for="data in fetchData.data" :key="data.id">
-        <p>{{ data.attributes.name }}</p>
-        <p>{{ data.attributes.idStartGG }}</p>
-        <Charts :player-slug="data.attributes.idStartGG" />
+      <div v-for="data in fetchData.data" :key="data.id" class="playerContainer">
+        <div>
+          <div class="test">
+            <h1 class="player-title">{{ data.attributes.name }}</h1> 
+            <!-- <i class="icon-twitter1"></i> -->
+
+          </div>
+          <div class="player-profile">
+            <div class="player-card">
+              <img :src="getImage(data.attributes.photo.data.attributes.formats.small.url)" />
+            </div>
+            <ul class="socials-aside socials-aside socials-aside_ready">
+              <a v-if="data.attributes.twitter !== null" :href="data.attributes.twitter" target="_blank" :title="data.attributes.name + ' Twitter'" aria-label="Twitter" class="icon-twitter"></a>
+              <a v-if="data.attributes.instagram !== null" :href="data.attributes.instagram" target="_blank" title="" aria-label="Instagram" class="icon-instagram"></a>
+              <a v-if="data.attributes.twitch !== null" :href="data.attributes.twitch" target="_blank" title="" aria-label="Twitch" class="icon-twitch1"></a>
+            </ul>
+          </div>
+        </div>
+<!-- https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
+https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com-->
+        <div>
+          <h2 class="text-center"><i class="icon-medaille"></i>Palmares</h2>
+          <Charts :player-slug="data.attributes.idStartGG" />
+        </div>
         <!-- <Charts player-slug="300903d2" /> -->
       </div>
     </div>
@@ -39,9 +63,15 @@ export default {
       console.log(route.params.name);
     })
 
+    function getImage(imagePath) {
+        const baseURL = process.env.VUE_APP_DOMAIN_NAME;
+        return baseURL + imagePath;
+      }
+
     return {
       fetchData,
       fetchError,
+      getImage
     }
   },
   components: {
@@ -49,3 +79,214 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.playerContainer {
+  // background-color: blue;
+  // margin-top: 15px;
+  
+  @media screen and (min-width: $breakpoint-lg) {
+    display: flex;
+    justify-content: space-around;
+    padding-block: min(1vh, 10rem);
+    // padding: 0 50px;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+  }
+
+  h2 {
+    margin-bottom: 15px;
+    i {
+      padding-right: 10px;
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .player-profile {
+    display: flex;
+  }
+}
+
+.player-card {
+  width: 100%;
+  max-width: 400px;
+  height: 450px;
+  border: 1px solid #ffffff22;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 300ms;
+  // margin-bottom: 30px;
+
+  // @media screen and (min-width: $breakpoint-lg) {
+  //   margin: 0 30px;
+  // }
+}
+
+.player-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.player-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.player-card .content {
+  box-sizing: border-box;
+  width: 100%;
+  position: absolute;
+  padding: 30px 20px 20px 20px;
+  height: auto;
+  bottom: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  
+  a {
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .test {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.player-title {
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+
+  @media screen and (min-width: 768px) {
+    text-align: inherit;
+  }
+}
+
+.socials-aside {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    // width: 100%;
+    // margin: auto;
+    transition: color .4s ease .1s;
+    z-index: 1;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: column;
+      justify-content: inherit;
+    }
+}
+
+
+
+.socials-aside a,.socials-aside button {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(1rem + 36px);
+    height: calc(1rem + 36px);
+    text-align: center;
+    color: inherit;
+    text-decoration: none;
+    line-height: 1rem;
+    transition: background-color .4s ease .1s,box-shadow .4s ease .1s;
+
+    @media screen and (min-width: 768px) {
+      font-size: 20px;
+      width: calc(1rem + 26px);
+      height: calc(1rem + 26px)
+    }
+}
+
+.socials-aside button {
+    border: 0;
+    padding: 0;
+    outline: none
+}
+
+.socials-aside button:hover {
+    background: white
+}
+
+// .socials-aside_ready {
+//     color: #001d6e
+// }
+
+// @media screen and (min-width: 768px) {
+//     .socials-aside_ready {
+//         display:flex
+//     }
+// }
+
+.socials-aside_ready .icon-video-camera1:before,.socials-aside_ready .icon-video-camera:before {
+    color: #fff
+}
+
+.socials-aside_ready a,.socials-aside_ready button {
+    background-color: #fff;
+    box-shadow: 0 1px 3px 1px #14204f80;
+    border-radius: 50%;
+    margin: 15px 0;
+
+    @media screen and (min-width: 768px) {
+      margin: 15px 7px 0;
+
+      &:first-child {
+          margin-top: 0;
+      }
+    }
+}
+
+.socials-aside_ready a.icon-video-camera1:before,.socials-aside_ready a.icon-cross:before,.socials-aside_ready a.icon-twitter:before,.socials-aside_ready a.icon-discord:before,.socials-aside_ready a.icon-video-camera:before,.socials-aside_ready button.icon-video-camera1:before,.socials-aside_ready button.icon-cross:before,.socials-aside_ready button.icon-twitter:before,.socials-aside_ready button.icon-discord:before,.socials-aside_ready button.icon-video-camera:before {
+    padding-top: 1px
+}
+
+.socials-aside_ready a.icon-twitch:hover:before,.socials-aside_ready button.icon-twitch:hover:before {
+    color: #6441a5
+}
+
+.socials-aside_ready a.icon-twitter:hover:before,.socials-aside_ready button.icon-twitter:hover:before {
+    color: #00acee
+}
+
+.socials-aside_ready a.icon-discord:hover:before,.socials-aside_ready button.icon-discord:hover:before {
+    color: #7289da
+}
+
+.socials-aside_ready .tooltip {
+    position: relative
+}
+
+.socials-aside_ready .tooltip .tooltiptext {
+    display: initial;
+    visibility: hidden;
+    font-size: 12px;
+    width: 120px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%
+}
+
+.socials-aside_ready .tooltip:hover .tooltiptext {
+    visibility: visible
+}
+</style>
