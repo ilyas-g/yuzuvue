@@ -1,22 +1,24 @@
 <template>
     <footer>
-        <div>
-            <img class="logo" :src="myLogoSrc" alt="my-logo"  width="50" />
-        </div>
-        <div>
-            <p class="text-center text-uppercase">Suivez-vous sur les réseaux sociaux</p>
-            <ul class="footer__social">
-              <li>
-                <a :href="twitterURL" target="_blank" title="" aria-label="Twitter" class="icon-twitter"></a>
-              </li>
-              <li>
-                <a :href="discordURL" target="_blank" title="" aria-label="Discord" class="icon-discord"></a>
-              </li>
-              <li>
-                <a :href="youtubeURL" target="_blank" title="" aria-label="Youtube" class="icon-youtube"></a>
-              </li>
-            </ul>
-        </div>
+      <!-- <div>
+          <img class="logo" :src="myLogoSrc" alt="my-logo"  width="50" />
+      </div> -->
+
+      <div class="footer-social">
+        <p class="text-center text-uppercase">Suivez-nous</p>
+        <ul class="footer__social">
+          <li>
+            <a :href="twitterURL" target="_blank" title="" aria-label="Twitter" class="icon-twitter"></a>
+          </li>
+          <li>
+            <a :href="discordURL" target="_blank" title="" aria-label="Discord" class="icon-discord"></a>
+          </li>
+          <li>
+            <a :href="youtubeURL" target="_blank" title="" aria-label="Youtube" class="icon-youtube"></a>
+          </li>
+        </ul>
+      </div>
+      <p class="footer__copyright">© 2019 - {{ currentDate }} Yuzu Gaming - All Rights Reserved.</p>
     </footer>
 </template>
 
@@ -34,8 +36,11 @@ export default {
     }
   },
   setup() {
+    const currentDate = new Date().getFullYear();
+
     return {
-        myLogoSrc
+        myLogoSrc,
+        currentDate
     }
   }
 }
@@ -44,12 +49,25 @@ export default {
 <style lang="scss">
 footer {
     padding: 15px;
-    position: relative;
-
+    // position: relative;
     font-family: 'Montserrat', sans-serif;
 
+  @media screen and (min-width: $breakpoint-lg) {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-social {
+    display: flex;
+    align-items: center;
+  }
+
   .footer__social {
-    margin-top: 15px;
+    margin-left: 15px;
     display: flex;
     justify-content: space-around;
 
@@ -58,37 +76,37 @@ footer {
     }
     &>li {
       // margin-bottom: 32px;
-      // margin-left: 48px;
-      font-size: 34px;
+      margin-left: 10px;
+      font-size: 24px;
       line-height: 1;
       vertical-align: middle;
     }
   }
 
-    .logo {
-      @media screen and (min-width: $breakpoint-lg) {
-        margin-left: 30px;
-      }
-    }
+  .footer__copyright {
+    font-size: 11px;
+  }
 
-    [class^="icon-"],
-    [class*=" icon-"] {
-        // background-color: aqua;
-        // font-size: 24px;
-        &:hover::before {
-          color: $sub-color;
-        }
-        &::before {
-          color: #fff;
-
-        }
-    }
-
+  .logo {
     @media screen and (min-width: $breakpoint-lg) {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      margin-left: 30px;
     }
+  }
+
+  [class^="icon-"],
+  [class*=" icon-"] {
+      // background-color: aqua;
+      // font-size: 24px;
+      &:hover::before {
+        color: $sub-color;
+      }
+      &::before {
+        color: #fff;
+
+      }
+  }
+
+
 }
 
 

@@ -20,6 +20,14 @@ $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 $breakpoint-xll: 1400px;
 
+.d-flex {
+    display: flex;
+}
+.justify-space-around {
+    @extend .d-flex;
+    justify-content: space-around;
+    background-color: #7289da;
+}
 .text-center {
     text-align: center;
 }
