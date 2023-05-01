@@ -1,8 +1,15 @@
 $main-bg-color: #0b0c06;
 $main-color: #fff;
-$sub-color: #ffd747;
-$ter-color: #e7c292;
-$red: #ff0000;
+$sub-color: yellow;
+$ter-color: #ffd747;
+// $sub-color: #ffd747;
+// $ter-color: #e7c292;
+
+$instragram-color: #e4405f;
+$discord-color: #7289da;
+$twitter-color : #1da1f2;
+$youtube-color: #f00;
+$twitch-color: #6441a4;
 
 $font-main-family: Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
 $font-sub-family: 'Montserrat', sans-serif;
@@ -13,8 +20,20 @@ $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 $breakpoint-xll: 1400px;
 
+.d-flex {
+    display: flex;
+}
+.justify-space-around {
+    @extend .d-flex;
+    justify-content: space-around;
+    background-color: #7289da;
+}
 .text-center {
     text-align: center;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
 }
 
 @font-face {

@@ -5,7 +5,7 @@
       <!-- <pre>{{ fetchData }}</pre> -->
       <div v-for="data in fetchData.data" :key="data.id" class="playerContainer">
         <div>
-          <div class="test">
+          <div class="player">
             <h1 class="player-title">{{ data.attributes.name }}</h1> 
             <!-- <i class="icon-twitter1"></i> -->
 
@@ -21,14 +21,7 @@
             </ul>
           </div>
         </div>
-<!-- https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com-->
+
         <div>
           <h2 class="text-center"><i class="icon-medaille"></i>Palmares</h2>
           <Charts :player-slug="data.attributes.idStartGG" />
@@ -120,6 +113,7 @@ export default {
   font-family: Arial, Helvetica, sans-serif;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 300ms;
+  margin: auto;
   // margin-bottom: 30px;
 
   // @media screen and (min-width: $breakpoint-lg) {
@@ -156,11 +150,14 @@ export default {
   }
 }
 
-@media screen and (min-width: 768px) {
-  .test {
-    display: flex;
+.player {
+  display: flex;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    justify-content: center;
+  }
+  @media screen and (min-width: $breakpoint-lg) {
     justify-content: space-between;
-    align-items: center;
   }
 }
 
@@ -178,8 +175,6 @@ export default {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    // width: 100%;
-    // margin: auto;
     transition: color .4s ease .1s;
     z-index: 1;
 
@@ -188,8 +183,6 @@ export default {
       justify-content: inherit;
     }
 }
-
-
 
 .socials-aside a,.socials-aside button {
     font-size: 25px;
@@ -220,16 +213,6 @@ export default {
 .socials-aside button:hover {
     background: white
 }
-
-// .socials-aside_ready {
-//     color: #001d6e
-// }
-
-// @media screen and (min-width: 768px) {
-//     .socials-aside_ready {
-//         display:flex
-//     }
-// }
 
 .socials-aside_ready .icon-video-camera1:before,.socials-aside_ready .icon-video-camera:before {
     color: #fff

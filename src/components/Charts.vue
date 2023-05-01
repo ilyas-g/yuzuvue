@@ -76,10 +76,12 @@ export default {
 }
 .table-chart {
     width: 100%;
-    max-width: 740px;
     border-collapse: collapse;
     text-transform: uppercase;
-
+    
+    @media screen and (min-width: $breakpoint-lg) {
+        max-width: 740px;
+    }
     td {
         border-top: 1px solid #dee2e6;
     }
