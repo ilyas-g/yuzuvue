@@ -1,10 +1,8 @@
 <template>
   <Header 
     lang="lplpllp"
-ch="mmppm"
-
+    ch="mmppm"
   />
-
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <!-- <ul>
@@ -13,9 +11,10 @@ ch="mmppm"
     </li>
   </ul>
   <p>{{ myObject.title }}</p> -->
-
-<router-view></router-view>
-
+  
+  <router-view></router-view>
+  
+  <Footer />
 </template>
 
 <script>
@@ -30,6 +29,7 @@ import { ref } from 'vue'
 
 import axios from 'axios'
 import Header from "./components/Header.vue"
+import Footer from "./components/Footer.vue"
 
 export default {
   name: 'App',
@@ -69,7 +69,8 @@ export default {
     }
   },
   components: {
-    Header
+    Header,
+    Footer
   }
 }
 </script>

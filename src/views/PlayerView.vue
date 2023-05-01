@@ -21,14 +21,7 @@
             </ul>
           </div>
         </div>
-<!-- https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com
-https://github.com/mercs600/vue3-perfect-scrollbar?ref=madewithvuejs.com-->
+
         <div>
           <h2 class="text-center"><i class="icon-medaille"></i>Palmares</h2>
           <Charts :player-slug="data.attributes.idStartGG" />
