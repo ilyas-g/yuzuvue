@@ -59,24 +59,30 @@ export default {
   // background-color: blue;
   margin-top: 15px;
   
-  @media screen and (min-width: $breakpoint-lg) {
-    width: 65%;
+  @media screen and (min-width: $breakpoint-md) {
+    width: 100%;
     display: flex;
     justify-content: space-around;
     // padding: 0 250px;
     align-items: center;
+  }
+
+  @media screen and (min-width: $breakpoint-lg) {
+    width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  
+  @media screen and (min-width: $breakpoint-xl) {
+    width: 65%;
+  }
 }
 
 .article-card {
   width: 100%;
-  max-width: 300px;
   height: 420px;
-  // border: 1px solid $sub-color;
   border: 1px solid #ffffff22;
   border-radius: 12px;
   overflow: hidden;
@@ -85,6 +91,14 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 300ms;
   margin-bottom: 30px;
+
+  @media screen and (min-width: $breakpoint-sm) {
+    max-width: 300px;
+  }
+
+  @media screen and (min-width: $breakpoint-md) {
+    margin: 0 15px;
+  }
 
   @media screen and (min-width: $breakpoint-lg) {
     margin: 0 30px;
@@ -110,7 +124,7 @@ export default {
   height: auto;
   bottom: 0;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
-  
+
   a {
     font-size: 30px;
     font-weight: 700;
@@ -118,6 +132,12 @@ export default {
     text-decoration: none;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
+    @media screen and (min-width: $breakpoint-md) {
+      font-size: 24px;
+    }
+    @media screen and (min-width: $breakpoint-lg) {
+      font-size: 30px;
+    }
   }
 }
 

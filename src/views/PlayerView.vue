@@ -2,13 +2,10 @@
   <main>
     <div v-if="fetchError">Oops! Error encountered: {{ fetchError.message }}</div>
     <div v-else-if="fetchData">
-      <!-- <pre>{{ fetchData }}</pre> -->
       <div v-for="data in fetchData.data" :key="data.id" class="playerContainer">
         <div>
           <div class="player">
             <h1 class="player-title">{{ data.attributes.name }}</h1> 
-            <!-- <i class="icon-twitter1"></i> -->
-
           </div>
           <div class="player-profile">
             <div class="player-card">
@@ -23,10 +20,9 @@
         </div>
 
         <div>
-          <h2 class="text-center"><i class="icon-medaille"></i>Palmares</h2>
+          <h2 class="text-center text-uppercase"><i class="icon-medaille"></i>Palmares</h2>
           <Charts :player-slug="data.attributes.idStartGG" />
         </div>
-        <!-- <Charts player-slug="300903d2" /> -->
       </div>
     </div>
     <div v-else>Loading...</div>
@@ -96,7 +92,7 @@ export default {
     }
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $breakpoint-lg) {
   .player-profile {
     display: flex;
   }
@@ -114,11 +110,6 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 300ms;
   margin: auto;
-  // margin-bottom: 30px;
-
-  // @media screen and (min-width: $breakpoint-lg) {
-  //   margin: 0 30px;
-  // }
 }
 
 .player-card:hover {
@@ -151,9 +142,9 @@ export default {
 }
 
 .player {
-  display: flex;
-  align-items: center;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $breakpoint-md) {
+    display: flex;
+    align-items: center;
     justify-content: center;
   }
   @media screen and (min-width: $breakpoint-lg) {
@@ -165,23 +156,26 @@ export default {
   text-align: center;
   text-transform: uppercase;
   color: #fff;
-
-  @media screen and (min-width: 768px) {
-    text-align: inherit;
-  }
 }
 
 .socials-aside {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    transition: color .4s ease .1s;
-    z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  flex-wrap: wrap;
+  transition: color .4s ease .1s;
+  z-index: 1;
+  margin-bottom: 30px;
 
-    @media screen and (min-width: 768px) {
-      flex-direction: column;
-      justify-content: inherit;
-    }
+  @media screen and (min-width: $breakpoint-md) {
+    justify-content: center;
+  }
+
+  @media screen and (min-width: $breakpoint-lg) {
+    margin-top: inherit;
+    flex-direction: column;
+    justify-content: inherit;
+  }
 }
 
 .socials-aside a,.socials-aside button {
@@ -197,7 +191,7 @@ export default {
     line-height: 1rem;
     transition: background-color .4s ease .1s,box-shadow .4s ease .1s;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $breakpoint-md) {
       font-size: 20px;
       width: calc(1rem + 26px);
       height: calc(1rem + 26px)
@@ -224,7 +218,7 @@ export default {
     border-radius: 50%;
     margin: 15px 0;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $breakpoint-md) {
       margin: 15px 7px 0;
 
       &:first-child {
