@@ -5,7 +5,7 @@
             <!-- <h1>Joueur {{ result.user.player.gamerTag }}</h1> -->
 
             <perfect-scrollbar>
-                <div class="table-responsive-lg mx-auto w-100">
+                <div class="table-responsive-lg">
                     <table class="table-chart">
                         <tbody>
                             <tr v-for="character in result.user.player.recentStandings" :key="character.id">
@@ -82,26 +82,25 @@ export default {
     @media screen and (min-width: $breakpoint-lg) {
         max-width: 740px;
     }
+
     td {
         border-top: 1px solid #dee2e6;
     }
+
     td, th {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: bold;
         text-transform: uppercase;
         padding: 0.6rem;
         vertical-align: middle;
 
+        @media (min-width: $breakpoint-sm) {
+            font-size: 17px;
+        }
         @media (min-width: $breakpoint-lg) {
             font-size: inherit;
         }
     }
-
-    // @media (min-width: $breakpoint-lg) {
-    //     display: block;
-    //     height: 450px;
-    //     overflow-y: scroll;
-    // }
 }
 
 @media (max-width: 991.98px) {
@@ -109,7 +108,6 @@ export default {
         display: block;
         width: 100%;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
 }
 </style>

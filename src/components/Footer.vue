@@ -1,9 +1,5 @@
 <template>
     <footer>
-      <!-- <div>
-          <img class="logo" :src="myLogoSrc" alt="my-logo"  width="50" />
-      </div> -->
-
       <div class="footer-social">
         <p class="text-center text-uppercase">Suivez-nous</p>
         <ul class="footer__social">
@@ -23,8 +19,6 @@
 </template>
 
 <script>
-// import { ref } from 'vue'
-import myLogoSrc from "@/assets/yuzu_logo.png";
 
 export default {
   name: 'FooterComponent',
@@ -39,7 +33,6 @@ export default {
     const currentDate = new Date().getFullYear();
 
     return {
-        myLogoSrc,
         currentDate
     }
   }
@@ -48,9 +41,10 @@ export default {
 
 <style lang="scss">
 footer {
-    padding: 15px;
-    // position: relative;
-    font-family: 'Montserrat', sans-serif;
+  padding: 15px;
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  bottom: 0;
 
   @media screen and (min-width: $breakpoint-lg) {
     width: 100%;
@@ -95,18 +89,15 @@ footer {
 
   [class^="icon-"],
   [class*=" icon-"] {
-      // background-color: aqua;
-      // font-size: 24px;
-      &:hover::before {
-        color: $sub-color;
-      }
-      &::before {
-        color: #fff;
-
-      }
+    // background-color: aqua;
+    // font-size: 24px;
+    &:hover::before {
+      color: $sub-color;
+    }
+    &::before {
+      color: #fff;
+    }
   }
-
-
 }
 
 
