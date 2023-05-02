@@ -11,6 +11,11 @@
             <div class="player-card">
               <img :src="getImage(data.attributes.photo.data.attributes.formats.small.url)" />
             </div>
+            <div class="okbro">
+              <div>
+                <img :src="image" />
+              </div>
+            </div>
             <ul class="socials-aside socials-aside socials-aside_ready">
               <a v-if="data.attributes.twitter !== null" :href="data.attributes.twitter" target="_blank" :title="data.attributes.name + ' Twitter'" aria-label="Twitter" class="icon-twitter"></a>
               <a v-if="data.attributes.instagram !== null" :href="data.attributes.instagram" target="_blank" title="" aria-label="Instagram" class="icon-instagram"></a>
@@ -36,6 +41,8 @@ import { useRoute } from 'vue-router'
 import { useFetch } from '../utils/fetch.js'
 import Charts from '../components/Charts.vue'
 
+import image from "@/assets/ggst-logo.png"
+
 export default {
   name: 'PlayerView',
   data () {
@@ -60,6 +67,7 @@ export default {
     return {
       fetchData,
       fetchError,
+      image,
       getImage
     }
   },
@@ -78,11 +86,6 @@ export default {
     display: flex;
     justify-content: space-around;
     padding-block: min(1vh, 10rem);
-    // padding: 0 50px;
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
   }
 
   h2 {
@@ -95,6 +98,7 @@ export default {
 @media screen and (min-width: $breakpoint-lg) {
   .player-profile {
     display: flex;
+    position: relative;
   }
 }
 
@@ -265,5 +269,36 @@ export default {
 
 .socials-aside_ready .tooltip:hover .tooltiptext {
     visibility: visible
+}
+
+.okbro {
+  background-color: #fff;
+  // color: #fff;
+  margin: -75px auto 30px;
+    position: relative;
+  // border-top-left-radius: 100%;
+  // width: 30%;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+
+  div {
+    // position: relative;
+    img {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-lg) {
+    position: absolute;
+    bottom: -70px;
+    right: -25px;
+    padding: 30px;
+    margin: 0;
+  }
 }
 </style>
