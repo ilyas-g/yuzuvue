@@ -5,7 +5,7 @@
       <div v-for="data in fetchData.data" :key="data.id" class="playerContainer">
         <div>
           <div class="player">
-            <h1 class="player-title">{{ data.attributes.name }}</h1> 
+            <h1 class="player-title">{{ data.attributes.name }} {{ data.attributes.game.data.attributes.name }}</h1> 
           </div>
           <div class="player-profile">
             <div class="player-card">
@@ -41,7 +41,7 @@ import { useRoute } from 'vue-router'
 import { useFetch } from '../utils/fetch.js'
 import Charts from '../components/Charts.vue'
 
-import image from "@/assets/ggst-logo.png"
+import image from "@/assets/t7-logo.png"
 
 export default {
   name: 'PlayerView',
@@ -295,7 +295,8 @@ export default {
 
   @media screen and (min-width: $breakpoint-lg) {
     position: absolute;
-    bottom: -70px;
+    top: 50%;
+    transform: translateY(-50%);
     right: -25px;
     padding: 30px;
     margin: 0;

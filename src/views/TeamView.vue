@@ -6,12 +6,41 @@
       </div>
 
       <div class="teamContainer" v-else>
+        <!-- <div v-for="player in players" :key="player.id">
+          <figure>
+              <img :src="getImage(player.attributes.photo.data.attributes.formats.small.url)" alt="Mountains">
+              <router-link :to="{ name: 'player', params: { name: player.attributes.name }}" class="title">{{ player.attributes.name }}</router-link>
+              <figcaption>
+                <router-link :to="{ name: 'player', params: { name: player.attributes.name }}" class="title">{{ player.attributes.name }}</router-link>
+                <img src="https://picsum.photos/id/287/250/300" alt="Mountains" />
+              </figcaption>
+          </figure>
+        </div> -->
+
+
         <div v-for="player in players" :key="player.id" class="article-card">
+          <router-link :to="{ name: 'player', params: { name: player.attributes.name }}">
+          <div class="content">
+            <figure>
+              <img :src="getImage(player.attributes.photo.data.attributes.formats.small.url)" alt="Mountains">
+
+              <span class="title">{{ player.attributes.name }}</span>
+              <figcaption>
+
+                <img class="img-full" :src="image" />
+
+              </figcaption>
+            </figure>
+          </div>
+        </router-link>
+        </div>
+
+        <!-- <div v-for="player in players" :key="player.id" class="article-card">
           <div class="content">
               <router-link :to="{ name: 'player', params: { name: player.attributes.name }}" class="title">{{ player.attributes.name }}</router-link>
           </div>
           <img :src="getImage(player.attributes.photo.data.attributes.formats.small.url)" />
-        </div>
+        </div> -->
       </div>
     </main>
 
@@ -25,6 +54,7 @@
 
 <script>
 import axios from 'axios'
+import image from "@/assets/sf6-logo.png"
 
 export default {
     name: 'TeamView',
@@ -40,7 +70,8 @@ export default {
       }
 
       return {
-        getImage
+        getImage,
+        image
       }
     },
     async mounted () {
@@ -77,6 +108,62 @@ export default {
   
   @media screen and (min-width: $breakpoint-xl) {
     width: 65%;
+  }
+
+  figure {
+    display: grid;
+    overflow: hidden;
+    cursor: pointer;
+    height: 420px;
+
+    > * {
+      grid-area: 1/1;
+      transition: .4s;
+    }
+
+    figcaption {
+      display: grid;
+      align-items: center;
+      color: #0000;
+
+      background: var(--c,#0009);
+      clip-path: inset(0 var(--_i,100%) 0 0);
+      -webkit-mask:
+        linear-gradient(#000 0 0),
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      -webkit-mask-clip: text, padding-box;
+
+      img {
+        display: block;
+        width: 100%;
+        height: initial;
+        padding: 10px;
+      }
+    }
+
+    &:hover {
+      figcaption {
+        // --_i: 0%;
+        --_i: -0.2%;
+
+        img {
+          transform: unset;
+        }
+      }
+
+      img {
+        transform: scale(1.2);
+      }
+      
+    }
+  }
+
+  @supports not (-webkit-mask-clip: text) {
+    figure figcaption {
+    -webkit-mask: none;
+    color: #fff;
+    }
   }
 }
 
@@ -120,17 +207,17 @@ export default {
   box-sizing: border-box;
   width: 100%;
   position: absolute;
-  padding: 30px 20px 20px 20px;
   height: auto;
   bottom: 0;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
 
-  a {
+  span {
     font-size: 30px;
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    text-shadow: 2px 2px 8px #000000;
+    // box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
     @media screen and (min-width: $breakpoint-md) {
       font-size: 24px;
@@ -155,5 +242,9 @@ export default {
 .article-card .title {
   font-size: 17px;
   color: #fff;
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  z-index: 25;
 }
 </style>
