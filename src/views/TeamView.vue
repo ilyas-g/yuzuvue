@@ -125,7 +125,6 @@ export default {
       display: grid;
       align-items: center;
       color: #0000;
-
       background: var(--c,#0009);
       clip-path: inset(0 var(--_i,100%) 0 0);
       -webkit-mask:

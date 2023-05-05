@@ -41,7 +41,7 @@ import { useRoute } from 'vue-router'
 import { useFetch } from '../utils/fetch.js'
 import Charts from '../components/Charts.vue'
 
-import image from "@/assets/t7-logo.png"
+import image from "@/assets/ggst-logo.png"
 
 export default {
   name: 'PlayerView',
@@ -79,9 +79,6 @@ export default {
 
 <style lang="scss">
 .playerContainer {
-  // background-color: blue;
-  // margin-top: 15px;
-  
   @media screen and (min-width: $breakpoint-lg) {
     display: flex;
     justify-content: space-around;
@@ -272,12 +269,10 @@ export default {
 }
 
 .okbro {
-  background-color: #fff;
-  // color: #fff;
+  background-color: #161616d0;
   margin: -75px auto 30px;
-    position: relative;
-  // border-top-left-radius: 100%;
-  // width: 30%;
+  position: relative;
+  border: 1px solid $ter-color;
   border-radius: 50%;
   width: 150px;
   height: 150px;
@@ -285,11 +280,12 @@ export default {
   div {
     // position: relative;
     img {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      // padding: 7px;
     }
   }
 
