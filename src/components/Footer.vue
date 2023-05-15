@@ -43,8 +43,6 @@ export default {
 footer {
   padding: 15px;
   font-family: 'Montserrat', sans-serif;
-  position: absolute;
-  bottom: 0;
 
   @media screen and (min-width: $breakpoint-lg) {
     width: 100%;

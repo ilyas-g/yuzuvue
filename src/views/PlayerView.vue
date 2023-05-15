@@ -5,11 +5,16 @@
       <div v-for="data in fetchData.data" :key="data.id" class="playerContainer">
         <div>
           <div class="player">
-            <h1 class="player-title">{{ data.attributes.name }}</h1> 
+            <h1 class="player-title">{{ data.attributes.name }} {{ data.attributes.game.data.attributes.name }}</h1> 
           </div>
           <div class="player-profile">
             <div class="player-card">
               <img :src="getImage(data.attributes.photo.data.attributes.formats.small.url)" />
+            </div>
+            <div class="okbro">
+              <div>
+                <img :src="image" />
+              </div>
             </div>
             <ul class="socials-aside socials-aside socials-aside_ready">
               <a v-if="data.attributes.twitter !== null" :href="data.attributes.twitter" target="_blank" :title="data.attributes.name + ' Twitter'" aria-label="Twitter" class="icon-twitter"></a>
@@ -36,6 +41,8 @@ import { useRoute } from 'vue-router'
 import { useFetch } from '../utils/fetch.js'
 import Charts from '../components/Charts.vue'
 
+import image from "@/assets/ggst-logo.png"
+
 export default {
   name: 'PlayerView',
   data () {
@@ -60,6 +67,7 @@ export default {
     return {
       fetchData,
       fetchError,
+      image,
       getImage
     }
   },
@@ -71,18 +79,10 @@ export default {
 
 <style lang="scss">
 .playerContainer {
-  // background-color: blue;
-  // margin-top: 15px;
-  
   @media screen and (min-width: $breakpoint-lg) {
     display: flex;
     justify-content: space-around;
     padding-block: min(1vh, 10rem);
-    // padding: 0 50px;
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
   }
 
   h2 {
@@ -95,6 +95,7 @@ export default {
 @media screen and (min-width: $breakpoint-lg) {
   .player-profile {
     display: flex;
+    position: relative;
   }
 }
 
@@ -265,5 +266,36 @@ export default {
 
 .socials-aside_ready .tooltip:hover .tooltiptext {
     visibility: visible
+}
+
+.okbro {
+  background-color: #161616d0;
+  margin: -75px auto 30px;
+  position: relative;
+  border: 1px solid $ter-color;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+
+  div {
+    // position: relative;
+    img {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      // padding: 7px;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-lg) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -25px;
+    padding: 30px;
+    margin: 0;
+  }
 }
 </style>
