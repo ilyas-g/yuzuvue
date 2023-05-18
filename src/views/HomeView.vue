@@ -2,19 +2,19 @@
     <main class="homepage">
       <div>
         <h1><span class="d-block yellow">Yuzu</span>Gaming</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam dolores tempore, pariatur quas reiciendis praesentium.</p>
+        <p>{{ home?.attributes.text }}</p>
         <p class="text-uppercase yellow">#Yuzurenext</p>
       </div>
 
       <img :src="lgoo" alt="Yuzu Gaming" width="450" />
-      <div v-if="error">
+      <!-- <div v-if="error">
         {{ error }}
       </div>
       <ul v-else>
         <li v-for="restaurant in restaurants" :key="restaurant.id">
           {{ restaurant.attributes.name }}
         </li>
-      </ul>
+      </ul> -->
       <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates eum provident voluptate. 
           Voluptatum eius consectetur voluptate quis voluptas ipsam, et in distinctio ipsum perspiciatis saepe modi dolorum officiis eum, 
           sint, sapiente est nemo amet cupiditate?
@@ -31,17 +31,21 @@ export default {
   name: 'HomePage',
   setup () {
     const restaurants = ref([]);
+    const home = ref(null)
 
     onMounted(async () => {
       try {
-        const response = await axios.get('https://yuzugaming-back.herokuapp.com/api/restaurants')
-        restaurants.value = response.data.data
+        const response = await axios.get('https://yuzugaming-back.herokuapp.com/api/homepage')
+        // restaurants.value = response.data.data
+        home.value = response.data.data
+        console.log(home.value.attributes.title);
       } catch (error) {
         this.error = error;
       }
     })
     return {
       restaurants,
+      home,
       lgoo,
       myObject: {
         title: 'How to do lists in Vue',
