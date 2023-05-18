@@ -7,7 +7,7 @@
       </div>
 
       <img :src="lgoo" alt="Yuzu Gaming" width="450" />
-      <!-- <div v-if="error">
+      <div v-if="error">
         {{ error }}
       </div>
       <ul v-else>
@@ -15,7 +15,7 @@
           {{ restaurant.attributes.name }}
         </li>
       </ul>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates eum provident voluptate. 
+      <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates eum provident voluptate. 
           Voluptatum eius consectetur voluptate quis voluptas ipsam, et in distinctio ipsum perspiciatis saepe modi dolorum officiis eum, 
           sint, sapiente est nemo amet cupiditate?
       </p> -->
@@ -25,17 +25,23 @@
 <script>
 import axios from 'axios'
 import lgoo from "@/assets/yuzu_logoo.svg";
+import { ref, onMounted } from 'vue'
+
 export default {
   name: 'HomePage',
-  data () {
-    return {
-      restaurants: [],
-      objects: [],
-    }
-  },
-    setup () {
+  setup () {
+    const restaurants = ref([]);
 
+    onMounted(async () => {
+      try {
+        const response = await axios.get('https://yuzugaming-back.herokuapp.com/api/restaurants')
+        restaurants.value = response.data.data
+      } catch (error) {
+        this.error = error;
+      }
+    })
     return {
+      restaurants,
       lgoo,
       myObject: {
         title: 'How to do lists in Vue',
@@ -44,14 +50,6 @@ export default {
       }
     }
   },
-  async mounted () {
-    try {
-      const response = await axios.get('https://yuzugaming-back.herokuapp.com/api/restaurants')
-      this.restaurants = response.data.data
-    } catch (error) {
-      this.error = error;
-    }
-  }
 }
 </script>
 
