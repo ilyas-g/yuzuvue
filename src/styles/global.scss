@@ -20,14 +20,24 @@ $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 $breakpoint-xll: 1400px;
 
+.yellow {
+    color: $ter-color;
+}
+
+.d-block {
+    display: block;
+}
+
 .d-flex {
     display: flex;
 }
+
 .justify-space-around {
     @extend .d-flex;
     justify-content: space-around;
     background-color: #7289da;
 }
+
 .text-center {
     text-align: center;
 }
@@ -75,38 +85,48 @@ $breakpoint-xll: 1400px;
 .icon-medaille:before {
     content: "\e907";
 }
+
 .icon-arrow-down-3101:before {
     content: "\e900";
 }
+
 .icon-instagram:before {
     content: "\e905";
     color: #e4405f;
 }
+
 .icon-discord:before {
     content: "\e901";
     color: #7289da;
 }
+
 .icon-twitter:before {
     content: "\e902";
     color: #1da1f2;
 }
+
 .icon-youtube:before {
     content: "\e903";
     color: #f00;
 }
+
 .icon-twitch1:before {
     content: "\e904";
     color: #6441a4;
 }
+
 .icon-instagram1:before {
     content: "\ea92";
 }
+
 .icon-twitter1:before {
     content: "\ea96";
 }
+
 .icon-youtube1:before {
     content: "\ea9d";
 }
+
 .icon-twitch:before {
     content: "\ea9f";
 }

@@ -87,7 +87,8 @@ body,html {height: 100%; width: 100%; max-width: 100%; overflow-x: hidden;}
 
 body {
   // background-color: $main-bg-color;
-  background: #1b1e24;
+  // background: #111;
+  background: #0b0c06;
 
   color: $main-color;
   font-family: $font-main-family;

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { useFetch } from '../utils/fetch.js'
@@ -45,14 +45,10 @@ import image from "@/assets/ggst-logo.png"
 
 export default {
   name: 'PlayerView',
-  data () {
-      return {
-          players: [],
-      }
-  },
   setup () {
     // const router = useRouter()
     const route = useRoute()
+    const players = ref([])
     const { fetchData, fetchError } = useFetch(`http://localhost:1337/api/players?populate=*&filters[name][$eq]=${route.params.name}`)
 
     watch(fetchData, () => {
@@ -60,11 +56,11 @@ export default {
     })
 
     function getImage(imagePath) {
-        const baseURL = process.env.VUE_APP_DOMAIN_NAME;
-        return baseURL + imagePath;
-      }
+      const baseURL = process.env.VUE_APP_DOMAIN_NAME;
+      return baseURL + imagePath;
+    }
 
-    return {
+    return {players,
       fetchData,
       fetchError,
       image,

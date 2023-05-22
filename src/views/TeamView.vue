@@ -55,33 +55,33 @@
 <script>
 import axios from 'axios'
 import image from "@/assets/sf6-logo.png"
+import { ref, onMounted } from 'vue'
 
 export default {
     name: 'TeamView',
-    data () {
-        return {
-        players: [],
-        }
-    },
     setup() {
+      const players = ref([]);
+
       function getImage(imagePath) {
         const baseURL = process.env.VUE_APP_DOMAIN_NAME;
         return baseURL + imagePath;
       }
 
+      onMounted(async () => {
+        try {
+          const response = await axios.get('http://localhost:1337/api/players?populate=*')
+          players.value = response.data.data
+        } catch (error) {
+          this.error = error;
+        }
+      })
+
       return {
         getImage,
-        image
+        image,
+        players
       }
     },
-    async mounted () {
-    try {
-      const response = await axios.get('http://localhost:1337/api/players?populate=*')
-      this.players = response.data.data
-    } catch (error) {
-      this.error = error;
-    }
-  }
 }
 </script>
 
