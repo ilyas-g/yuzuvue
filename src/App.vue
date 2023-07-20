@@ -27,7 +27,7 @@
 
 import { ref } from 'vue'
 
-import axios from 'axios'
+// import axios from 'axios'
 import Header from "./components/Header.vue"
 import Footer from "./components/Footer.vue"
 
@@ -60,14 +60,14 @@ export default {
       posts
     }
   },
-  async mounted () {
-    try {
-      const response = await axios.get('http://localhost:1337/api/{content-type}?locale={locale-code}')
-      this.players = response.data.data
-    } catch (error) {
-      this.error = error;
-    }
-  },
+  // async mounted () {
+  //   try {
+  //     const response = await axios.get('http://localhost:1337/api/{content-type}?locale={locale-code}')
+  //     this.players = response.data.data
+  //   } catch (error) {
+  //     this.error = error;
+  //   }
+  // },
   components: {
     Header,
     Footer
