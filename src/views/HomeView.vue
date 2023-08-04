@@ -13,21 +13,13 @@ import { ref, watchEffect } from 'vue'
 
   watchEffect(async () => {
     const url = `${API_URL}${currentLocale.value}`
-    datas.value = await (await fetch(url)).json()
-
-    console.log(datas.value.data.attributes.text)
-  })
-
-  // onMounted(async () => {
-  //   try {
-  //     const response = await axios.get('https://yuzugaming-back.herokuapp.com/api/homepage')
-  //     // restaurants.value = response.data.data
-  //     home.value = response.data.data
-  //     console.log(home.value.attributes.title);
-  //   } catch (error) {
-  //     this.error = error;
-  //   }
-  // })
+    try {
+        datas.value = await (await fetch(url)).json()
+        console.log(datas.value.data.attributes.text)
+    } catch (error) {
+        console.error('Failed to fetch data:', error)
+    }
+})
 
 </script>
 
@@ -46,12 +38,12 @@ import { ref, watchEffect } from 'vue'
 
     <p>vuejs/vue@{{ currentLocale }}</p>
 
-    <p>{{ datas.data?.attributes.text }}</p>
-    <ul>
-      <li v-for="{ id } in datas" :key="id">
-        {{ id }} 
-      </li>
-    </ul>
+    <p v-if="datas && datas.data">{{ datas.data?.attributes.text }}</p>
+<ul v-if="datas && datas.data">
+    <li v-for="{ id } in datas?.data" :key="id">
+        {{ id }}
+    </li>
+</ul>
 
 
       <h1><span class="d-block yellow">Yuzu</span>Gaming</h1>
