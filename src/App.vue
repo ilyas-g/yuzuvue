@@ -3,9 +3,9 @@
     lang="lplpllp"
     ch="mmppm"
   />
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <!-- <ul>
+  <!-- <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <ul>
     <li v-for="value in myObject" :key="value">
       {{ value }}
     </li>
@@ -27,8 +27,8 @@
 
 import { ref } from 'vue'
 
-import axios from 'axios'
-import Header from "./components/Header.vue"
+// import axios from 'axios'
+import Header from "./components/Header/Header.vue"
 import Footer from "./components/Footer.vue"
 
 export default {
@@ -60,14 +60,14 @@ export default {
       posts
     }
   },
-  async mounted () {
-    try {
-      const response = await axios.get('http://localhost:1337/api/{content-type}?locale={locale-code}')
-      this.players = response.data.data
-    } catch (error) {
-      this.error = error;
-    }
-  },
+  // async mounted () {
+  //   try {
+  //     const response = await axios.get('http://localhost:1337/api/{content-type}?locale={locale-code}')
+  //     this.players = response.data.data
+  //   } catch (error) {
+  //     this.error = error;
+  //   }
+  // },
   components: {
     Header,
     Footer

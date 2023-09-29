@@ -1,64 +1,61 @@
-<template>
-    <main class="homepage">
-      <div>
-        <h1><span class="d-block yellow">Yuzu</span>Gaming</h1>
-        <p>{{ home?.attributes.text }}</p>
-        <p class="text-uppercase yellow">#Yuzurenext</p>
-      </div>
-
-      <img :src="lgoo" alt="Yuzu Gaming" width="450" />
-      <!-- <div v-if="error">
-        {{ error }}
-      </div>
-      <ul v-else>
-        <li v-for="restaurant in restaurants" :key="restaurant.id">
-          {{ restaurant.attributes.name }}
-        </li>
-      </ul> -->
-      <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates eum provident voluptate. 
-          Voluptatum eius consectetur voluptate quis voluptas ipsam, et in distinctio ipsum perspiciatis saepe modi dolorum officiis eum, 
-          sint, sapiente est nemo amet cupiditate?
-      </p> -->
-    </main>
-</template>
-
-<script>
-import axios from 'axios'
+<script setup>
+// import axios from 'axios'
 import lgoo from "@/assets/yuzu_logoo.svg";
-import { ref, onMounted } from 'vue'
+import { ref, watchEffect } from 'vue'
 
-export default {
-  name: 'HomePage',
-  setup () {
-    const restaurants = ref([]);
-    const home = ref(null)
+  const home = ref(null)
 
-    onMounted(async () => {
-      try {
-        const response = await axios.get('https://yuzugaming-back.herokuapp.com/api/homepage')
-        // restaurants.value = response.data.data
-        home.value = response.data.data
-        console.log(home.value.attributes.title);
-      } catch (error) {
-        this.error = error;
-      }
-    })
-    return {
-      restaurants,
-      home,
-      lgoo,
-      myObject: {
-        title: 'How to do lists in Vue',
-        author: 'Jane Doe',
-        publishedAt: '2016-04-10'
-      }
+  const API_URL = 'https://yuzugaming-back.herokuapp.com/api/homepage?locale='
+  const locales = ['en', 'fr']
+
+  const currentLocale = ref(locales[0])
+  const datas = ref(null)
+
+  watchEffect(async () => {
+    const url = `${API_URL}${currentLocale.value}`
+    try {
+        datas.value = await (await fetch(url)).json()
+        console.log(datas.value.data.attributes.text)
+    } catch (error) {
+        console.error('Failed to fetch data:', error)
     }
-  },
-}
+})
+
 </script>
+
+<template>
+  <main class="homepage">
+    <div>
+      <template v-for="locale in locales" :key="locale.id">
+        <input type="radio"
+          :id="locale"
+          :value="locale"
+          name="locale"
+          v-model="currentLocale">
+        <label :for="locale">{{ locale }}</label>
+      </template>
+
+      <p>vuejs/vue@{{ currentLocale }}</p>
+
+      <p v-if="datas && datas.data">{{ datas.data?.attributes.text }}</p>
+      <ul v-if="datas && datas.data">
+          <li v-for="{ id } in datas?.data" :key="id">
+              {{ id }}
+          </li>
+      </ul>
+
+      <h1><span class="d-block yellow">Yuzu</span>Gaming</h1>
+      <p>{{ home?.attributes.text }}</p>
+      <p class="text-uppercase yellow">#Yuzurenext</p>
+    </div>
+
+    <img :src="lgoo" alt="Yuzu Gaming" width="450" />
+  </main>
+</template>
 
 <style lang="scss">
 .homepage {
+  display: block; /* A ENLEVER APRES L'AJOUT DES LANGUES */
   h1 {
     line-height: 1;
     text-transform: uppercase;
