@@ -26,7 +26,6 @@ import { ref, watchEffect } from 'vue'
 <template>
   <main class="homepage">
     <div>
-
       <template v-for="locale in locales" :key="locale.id">
         <input type="radio"
           :id="locale"
@@ -36,15 +35,14 @@ import { ref, watchEffect } from 'vue'
         <label :for="locale">{{ locale }}</label>
       </template>
 
-    <p>vuejs/vue@{{ currentLocale }}</p>
+      <p>vuejs/vue@{{ currentLocale }}</p>
 
-    <p v-if="datas && datas.data">{{ datas.data?.attributes.text }}</p>
-<ul v-if="datas && datas.data">
-    <li v-for="{ id } in datas?.data" :key="id">
-        {{ id }}
-    </li>
-</ul>
-
+      <p v-if="datas && datas.data">{{ datas.data?.attributes.text }}</p>
+      <ul v-if="datas && datas.data">
+          <li v-for="{ id } in datas?.data" :key="id">
+              {{ id }}
+          </li>
+      </ul>
 
       <h1><span class="d-block yellow">Yuzu</span>Gaming</h1>
       <p>{{ home?.attributes.text }}</p>
