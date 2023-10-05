@@ -1,25 +1,42 @@
-<script setup>
+<script>
 // import axios from 'axios'
 import lgoo from "@/assets/yuzu_logoo.svg";
 import { ref, watchEffect } from 'vue'
 
-  const home = ref(null)
+import Panel from "../components/Panel/PanelComponent.vue"
+import TestOk from "../components/TestOk.vue"
 
-  const API_URL = 'https://yuzugaming-back.herokuapp.com/api/homepage?locale='
-  const locales = ['en', 'fr']
+export default {
+  name: 'HomeView',
+  setup() {
+    // const home = ref(null)
 
-  const currentLocale = ref(locales[0])
-  const datas = ref(null)
+    const API_URL = 'http://localhost:1337/api/homepage?locale=en'
+    const locales = ['en', 'fr']
 
-  watchEffect(async () => {
-    const url = `${API_URL}${currentLocale.value}`
-    try {
-        datas.value = await (await fetch(url)).json()
-        console.log(datas.value.data.attributes.text)
-    } catch (error) {
-        console.error('Failed to fetch data:', error)
+    const currentLocale = ref(locales[0])
+    const datas = ref(null)
+
+    watchEffect(async () => {
+      const url = `${API_URL}${currentLocale.value}`
+      try {
+          datas.value = await (await fetch(url)).json()
+          console.log(datas.value.data.attributes.text)
+      } catch (error) {
+          console.error('Failed to fetch data:', error)
+      }
+    })
+
+    return {
+      lgoo
     }
-})
+  },
+  components: {
+    Panel,
+    TestOk
+  }
+}
+
 
 </script>
 
@@ -36,7 +53,8 @@ import { ref, watchEffect } from 'vue'
       </template>
 
       <p>vuejs/vue@{{ currentLocale }}</p>
-
+      <TestOk>Click mdfdssde!</TestOk>
+      <Panel /> <!-- Attention il y a un display none en sass sur le composant -->
       <p v-if="datas && datas.data">{{ datas.data?.attributes.text }}</p>
       <ul v-if="datas && datas.data">
           <li v-for="{ id } in datas?.data" :key="id">

@@ -1,7 +1,7 @@
 <template>
     <p>dde {{ A0 }}</p>
     <button @click="update()">
-      sss
+      <slot></slot>
     </button>
     <p>gggthy {{ A2 }}</p>
 </template>
