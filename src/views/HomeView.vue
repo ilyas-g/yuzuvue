@@ -9,9 +9,12 @@ import TestOk from "../components/TestOk.vue"
 export default {
   name: 'HomeView',
   setup() {
-    // const home = ref(null)
+    // const product = ref(null)
+    // fetch('http://localhost:1337/api/homepage?locale=en')
+    // .then(response => response.json())
+    // .then(data => product.value = data);
 
-    const API_URL = 'http://localhost:1337/api/homepage?locale=en'
+    const API_URL = `http://localhost:1337/api/homepage?locale=`
     const locales = ['en', 'fr']
 
     const currentLocale = ref(locales[0])
@@ -28,7 +31,10 @@ export default {
     })
 
     return {
-      lgoo
+      lgoo,
+      currentLocale,
+      locales,
+      datas
     }
   },
   components: {
@@ -43,18 +49,19 @@ export default {
 <template>
   <main class="homepage">
     <div>
-      <template v-for="locale in locales" :key="locale.id">
-        <input type="radio"
-          :id="locale"
-          :value="locale"
-          name="locale"
-          v-model="currentLocale">
-        <label :for="locale">{{ locale }}</label>
-      </template>
-
-      <p>vuejs/vue@{{ currentLocale }}</p>
-      <TestOk>Click mdfdssde!</TestOk>
+      <TestOk>Click me!</TestOk>
       <Panel /> <!-- Attention il y a un display none en sass sur le composant -->
+
+      <template v-for="locale in locales" :key="locale.id">
+      <input type="radio"
+        :id="locale"
+        :value="locale"
+        name="locale"
+        v-model="currentLocale">
+      <label :for="locale">{{ locale }}</label>
+    </template>
+      <p>vuejs/vue@{{ currentLocale }}</p>
+
       <p v-if="datas && datas.data">{{ datas.data?.attributes.text }}</p>
       <ul v-if="datas && datas.data">
           <li v-for="{ id } in datas?.data" :key="id">
@@ -63,7 +70,6 @@ export default {
       </ul>
 
       <h1><span class="d-block yellow">Yuzu</span>Gaming</h1>
-      <p>{{ home?.attributes.text }}</p>
       <p class="text-uppercase yellow">#Yuzurenext</p>
     </div>
 

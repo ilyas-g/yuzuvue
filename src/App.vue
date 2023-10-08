@@ -1,8 +1,15 @@
 <template>
   <Header 
-    lang="lplpllp"
     ch="mmppm"
-  />
+  >
+  <select v-model="selected">
+  <option disabled value="">Please select one</option>
+  <option>A</option>
+  <option>B</option>
+  <option>C</option>
+</select>
+<div>Selected: {{ selected }}</div>
+  </Header>
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
   <ul>
@@ -35,15 +42,6 @@ export default {
   name: 'App',
   setup () {
 
-    // function test() {
-    //   console.log("okokokkok heqqqqqqqqqqqqqqadereerererere");
-    // }
-
-    // const displayBlock = reactive({
-    //   display: 'none',
-    // })
-
-
     const posts = ref([
       { id: 1, title: 'My journey with Vue' },
       { id: 2, title: 'Blogging with Vue' },
@@ -60,14 +58,6 @@ export default {
       posts
     }
   },
-  // async mounted () {
-  //   try {
-  //     const response = await axios.get('http://localhost:1337/api/{content-type}?locale={locale-code}')
-  //     this.players = response.data.data
-  //   } catch (error) {
-  //     this.error = error;
-  //   }
-  // },
   components: {
     Header,
     Footer
@@ -86,8 +76,6 @@ export default {
 body,html {height: 100%; width: 100%; max-width: 100%; overflow-x: hidden;}
 
 body {
-  // background-color: $main-bg-color;
-  // background: #111;
   background: #0b0c06;
 
   color: $main-color;
