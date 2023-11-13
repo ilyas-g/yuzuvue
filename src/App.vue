@@ -1,26 +1,15 @@
 <template>
   <Header 
-    ch="mmppm"
+    ch=""
   >
   <select v-model="selected">
-  <option disabled value="">Please select one</option>
-  <option>A</option>
-  <option>B</option>
-  <option>C</option>
-</select>
-<div>Selected: {{ selected }}</div>
+    <option :id="locale" v-for="locale in locales" :key="locale.id" :value="locale">{{ locale }}</option>
+    <!-- <option disabled value="">Please select one</option> -->
+  </select>
+  <div>Selected: {{ selected }}</div>
   </Header>
-  <!-- <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <ul>
-    <li v-for="value in myObject" :key="value">
-      {{ value }}
-    </li>
-  </ul>
-  <p>{{ myObject.title }}</p> -->
-  
   <router-view></router-view>
-  
+
   <Footer />
 </template>
 
@@ -41,6 +30,7 @@ import Footer from "./components/Footer.vue"
 export default {
   name: 'App',
   setup () {
+    const locales = ['en', 'fr']
 
     const posts = ref([
       { id: 1, title: 'My journey with Vue' },
@@ -49,7 +39,7 @@ export default {
     ])
 
     return {
-      // test,
+      locales,
       myObject: {
         title: 'How to do lists in Vue',
         author: 'Jane Doe',

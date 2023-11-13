@@ -5,8 +5,9 @@
 <script>
 import { ref } from 'vue'
 import myLogoSrc from "@/assets/yuzu_logo.png";
+import { useLanguageStore } from '@/stores/language'
 
-// import myLogoSrc from "@/assets/yuzu_logo.svg";
+import SelectComponent from '../SelectComponent.vue';
 export default {
   name: 'HeaderComponent',
   props: {
@@ -19,13 +20,18 @@ export default {
     const langActive = ref(false)
     const locales = ['en', 'fr']
 
+    const language = useLanguageStore()
     return {
         myLogoSrc,
+        language,
         locales,
         isActive,
         langActive
     };
-  }
+  },
+  components: {
+    SelectComponent
+  },
 }
 </script>
 
@@ -43,20 +49,23 @@ export default {
               <router-link to="/team">Team</router-link>
           </nav>
 
+          <SelectComponent>
+            <p v-for="locale in locales" :key="locale">{{ locale }}</p>
+          </SelectComponent>
           <!-- <select>
             <option :value="locale" v-for="(locale, index) in locales" v-bind:key="index">
               {{locale}}
             </option>
           </select> -->
 
-          <div class="dropdown-lang-wrapper"> 
+          <!-- <div class="dropdown-lang-wrapper"> 
             <span @click="langActive = !langActive">
               <slot></slot>
             </span>
             <div v-if="langActive" class="dropdown-content" :class="$attrs.class">
               {{ ch }}
             </div>
-          </div>
+          </div> -->
       </header>
       <!-- <p :class="{ active: isActive }">Element active</p>
       <p v-if="isActive">ok !</p>
