@@ -1,4 +1,5 @@
 import { createApp, provide, h } from 'vue';
+import { createPinia } from 'pinia';
 import { DefaultApolloClient } from '@vue/apollo-composable';
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
@@ -32,6 +33,8 @@ const apolloClient = new ApolloClient({
     cache,
 });
 
+const pinia = createPinia();
+
 const app = createApp({
     setup() {
         provide(DefaultApolloClient, apolloClient);
@@ -45,4 +48,5 @@ app.use(PerfectScrollbar, {
         suppressScrollX: true
     }
 });
+app.use(pinia);
 app.use(router).mount('#app');

@@ -60,7 +60,8 @@ export default {
       return baseURL + imagePath;
     }
 
-    return {players,
+    return {
+      players,
       fetchData,
       fetchError,
       image,
