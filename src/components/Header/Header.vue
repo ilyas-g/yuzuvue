@@ -43,14 +43,16 @@ export default {
               <router-link to="/team">Team</router-link>
           </nav>
 
-          <select>
+          <!-- <select>
             <option :value="locale" v-for="(locale, index) in locales" v-bind:key="index">
               {{locale}}
             </option>
-          </select>
+          </select> -->
 
-          <div class="dropdown-lang-wrapper">
-            <span @click="langActive = !langActive">{{ lang }}</span>
+          <div class="dropdown-lang-wrapper"> 
+            <span @click="langActive = !langActive">
+              <slot></slot>
+            </span>
             <div v-if="langActive" class="dropdown-content" :class="$attrs.class">
               {{ ch }}
             </div>

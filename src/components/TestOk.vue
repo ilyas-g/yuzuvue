@@ -1,9 +1,9 @@
 <template>
-    <p>dde {{ A0 }}</p>
+    <p>-- Panel component {{ A0 }} --</p>
     <button @click="update()">
-      sss
+      <slot></slot>
     </button>
-    <p>gggthy {{ A2 }}</p>
+    <p>-- End Panel Component {{ A2 }} --</p>
 </template>
 
 <script>
@@ -15,14 +15,14 @@ export default {
     let A1 = 2
     let A2 = 0;
 
-    console.log(A2) // 3
+    // console.log(A2) // 3
 
     A0 = 2
-    console.log(A2) // Still 3
+    // console.log(A2) // Still 3
 
     function update() {
       A2 = A0 + A1
-      console.log(A2)
+      // console.log(A2)
     }
 
     return {

@@ -6,17 +6,6 @@
       </div>
 
       <div class="teamContainer" v-else>
-        <!-- <div v-for="player in players" :key="player.id">
-          <figure>
-              <img :src="getImage(player.attributes.photo.data.attributes.formats.small.url)" alt="Mountains">
-              <router-link :to="{ name: 'player', params: { name: player.attributes.name }}" class="title">{{ player.attributes.name }}</router-link>
-              <figcaption>
-                <router-link :to="{ name: 'player', params: { name: player.attributes.name }}" class="title">{{ player.attributes.name }}</router-link>
-                <img src="https://picsum.photos/id/287/250/300" alt="Mountains" />
-              </figcaption>
-          </figure>
-        </div> -->
-
 
         <div v-for="player in players" :key="player.id" class="article-card">
           <router-link :to="{ name: 'player', params: { name: player.attributes.name }}">
