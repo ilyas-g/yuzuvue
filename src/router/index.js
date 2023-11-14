@@ -25,6 +25,12 @@ const routes = [
     component: () =>
       import("../views/PlayerView.vue"),
   },
+  {
+    path: "/searchplayers",
+    name: "searchplayers",
+    component: () =>
+      import("../views/SearchPlayersView.vue"),
+  },
 ];
 
 const router = createRouter({

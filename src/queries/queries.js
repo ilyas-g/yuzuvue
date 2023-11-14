@@ -5,7 +5,6 @@ import gql from 'graphql-tag';
 const PLAYER_QUERY = gql`
 query YuzuPlayer($slug: String!) {
   user(slug: $slug) {
-    
     id
     slug
     player {
@@ -30,6 +29,14 @@ query YuzuPlayer($slug: String!) {
           }
         }
         placement
+      }
+    }
+    tournaments {
+      nodes {
+        id
+        name
+        url
+        startAt
       }
     }
   }
