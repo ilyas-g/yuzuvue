@@ -47,6 +47,7 @@ export default {
               <router-link to="/">Home</router-link>
               <router-link to="/about">About</router-link>
               <router-link to="/team">Team</router-link>
+              <router-link to="/searchplayers">Players</router-link>
           </nav>
 
           <SelectComponent>
